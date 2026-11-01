@@ -191,3 +191,39 @@ The user saw piece 1 and the BuildStory section and chose the BuildStory look fo
 ### Unchanged
 
 The pages, the problem pages (restyled to ink and gold), the phone bottom bar, piece 1's 3D removal and the tests, the build order and the testing rules.
+
+---
+
+## Revision 3 (2026-11-01, approved): Night build, desktop first
+
+The user rejected the ink-and-gold colours of Revision 2: what they loved was the drawing animation, not its colours. After several palettes, they chose the **Night** mode of the prototype `docs/mockups/day-on-site.html` (published at https://claude.ai/artifact/SPqhdeNYv66FCaSUgV6G7G), with a near-black handover. Revision 3 replaces the colours of Revisions 1 and 2. Revision 2's section drawings, tools and intro rule (full animation on every load) stand.
+
+**Desktop first.** Build and polish at 1280 px and up first. Phone layout comes after the desktop site is approved. The phone bottom bar from piece 1 stays.
+
+### The night journey (the story at the top of the home page)
+
+The page background is a fixed sky that blends between five stages as you scroll: two gradient stops, a soft haze glow with a position, and film grain. Text is always cream.
+
+| Stage | Sky top | Sky bottom | Haze | Haze position |
+|---|---|---|---|---|
+| 1 The plot | `#0b0e1c` | `#141a30` | `#2a3a7a` indigo | 18% 85% |
+| 2 Structure | `#0c0f15` | `#161b24` | `#2f3d4d` steel | 26% 24% |
+| 3 Walls | `#100d0e` | `#1c1413` | `#5a2a1c` brick | 52% 8% |
+| 4 Finishing | `#110f0b` | `#1f1910` | `#6a4a1c` amber | 84% 78% |
+| 5 Handover | `#020306` | `#06080d` | `#120f14` almost none | 70% 95% |
+
+- **Handover:** the windows fill with `#ffc46b` and glow (drop-shadow `#ffb54d`, `#ff9a2e`), warm light spills onto the ground, and faint stars fade in.
+
+### Tokens
+
+| Token | Value | Use |
+|---|---|---|
+| `night` | `#06080d` | default page background (the handover black) |
+| `night-raised` | `#10131b` | reading panels: prices, projects, booking |
+| `cream` | `#f3ede2` | text and drawn lines |
+| `cream-dim` | `#f3ede2` at 75% | secondary text |
+| `glow` | `#ffc46b`, gradient to `#ffb54d` | primary buttons, window light, the only warm accent |
+
+- **Header:** frosted glass (`backdrop-filter: blur(18px) saturate(170%)`) over the current sky.
+- **Primary button:** the glowing pill from the prototype.
+- **After the story:** sections sit on `night` and `night-raised`, and the window-glow amber is the one accent.
