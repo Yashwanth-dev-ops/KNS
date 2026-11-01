@@ -11,9 +11,9 @@ a{color:inherit;text-decoration:none}
 .pill{border:1.5px solid currentColor;border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px}
 /* 1 hero: the house seen through the letters, then the window opens to full screen */
 .hero{height:100vh;position:relative;overflow:hidden}
-.hero .word{position:absolute;inset:0;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:700;font-size:30vw;line-height:1;padding-top:4vh;letter-spacing:-.04em;
+.hero .word{position:absolute;inset:0;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:700;font-size:30vw;line-height:1;padding-top:4vh;transform-origin:50% 54%;will-change:transform;letter-spacing:-.04em;
   background:url(img/exterior.jpg) center 40%/cover;-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero .frame{position:absolute;inset:0;background:url(img/exterior.jpg) center 40%/cover;clip-path:inset(38% 36% 38% 36%);border-radius:0}
+.hero .frame{position:absolute;inset:0;background:url(img/exterior.jpg) center 40%/cover;opacity:0}
 .hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7))}
 .hero .copy{position:absolute;left:40px;right:40px;bottom:48px;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:40px;opacity:0}
 .hero h1{font-family:Fraunces,serif;font-weight:600;font-size:clamp(48px,6.4vw,96px);line-height:.98;letter-spacing:-.025em;margin:0;max-width:11ch}
@@ -54,7 +54,7 @@ a{color:inherit;text-decoration:none}
 .mag{display:inline-grid;place-items:center;margin-top:40px;width:180px;height:180px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:700;font-size:18px}
 .mag:focus-visible,.pill:focus-visible{outline:2px solid var(--paper);outline-offset:4px}
 .note{font-size:13px;opacity:.6;margin-top:18px}
-@media (prefers-reduced-motion:reduce){.hero .frame{clip-path:none}.hero .copy{opacity:1}.plan [class^=s]{stroke-dashoffset:0}.draw .photo{clip-path:none}}
+@media (prefers-reduced-motion:reduce){.hero .frame{opacity:1}.hero .word{display:none}.hero .copy{opacity:1}.plan [class^=s]{stroke-dashoffset:0}.draw .photo{clip-path:none}}
 </style></head><body>
 <header class="bar"><b>KNS</b><nav><span>Homes</span><span>Inside</span><span>Prices</span><span>Projects</span></nav><a class="pill" href="#">WhatsApp</a></header>
 
@@ -123,10 +123,13 @@ if(!reduce){
   const lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
   // 1 hero: through the letters into the house
   gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'+=150%',pin:true,scrub:1}})
-    .to('.hero .word',{scale:2.4,opacity:0,ease:'power2.in'},0)
-    .fromTo('.hero .frame',{clipPath:'inset(38% 36% 38% 36%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'power2.inOut'},0)
+    .to('.hero .word',{scale:16,ease:'power3.in',duration:.7},0)
+    .to('.hero .frame',{opacity:1,duration:.2,ease:'none'},.5)
+    .to('.hero .word',{opacity:0,duration:.05},.7)
     .to('.hero .copy',{opacity:1,y:0,duration:.35},.6).from('.hero .copy',{y:40,duration:.35},.6)
     .to('.cue',{opacity:0,duration:.1},0);
+  // letters rise in on load
+  gsap.from('.hero .word',{opacity:0,y:60,duration:1.4,ease:'power4.out',delay:.2,clearProps:'transform'});
   // marquee
   gsap.to('.mq div',{xPercent:-50,ease:'none',duration:28,repeat:-1});
   // 2 rooms slide sideways while you scroll down; images drift inside their frames
