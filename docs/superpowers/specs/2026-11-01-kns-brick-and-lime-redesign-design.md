@@ -139,3 +139,55 @@ The service worker (`public/sw.js`) keeps serving `offline.html` when the networ
 - The design renders are AI-generated, so they're always labelled as designs.
 - The real photos are 573 px until originals arrive.
 - The project lives only in this temporary container until it is pushed to a git remote.
+
+---
+
+## Revision 2 (2026-11-01, approved): "The drawing comes alive" replaces Brick & lime
+
+The user saw piece 1 and the BuildStory section and chose the BuildStory look for the whole site: dark background, gold lines that draw themselves on scroll, photos appearing inside the drawings. Brick & lime is dropped. Where this revision and the sections above disagree, this revision wins.
+
+### Look (replaces "Look")
+
+| Token | Value | Use |
+|---|---|---|
+| `ink` | `#0b0e19` | page background |
+| `ink-raised` | `#141a2b` | cards, alternate bands |
+| `line` | `#c9ad6c` | the drawn lines, primary buttons, accents (logo gold, light) |
+| `line-dim` | `#c9ad6c` at 25% | grid and construction lines |
+| `cream` | `#f3ede2` | text |
+| `cream-dim` | `#f3ede2` at 72% | secondary text |
+
+- **Fonts:** Fraunces and Hanken Grotesk, as before.
+- **Texture:** a faint blueprint grid behind the dark sections.
+- **Contrast:** gold on ink is about 9:1; cream-dim on ink is above 7:1.
+
+### Intro (replaces item 1 of the home page)
+
+- The full logo animation plays on every open and every reload. There's no sessionStorage check and no `intro-seen` class. Skip is always visible.
+- Drawn in `line` gold on `ink`, exactly the original style.
+- Under reduced motion it fades in and out in under 1 s.
+
+### Every section is a drawing (replaces the section treatments)
+
+| Section | The drawing |
+|---|---|
+| Hero | Continues from the intro: the crane stays on screen and lowers the headline into place; the price is drawn as a dimension line ("from ₹1,600 / sq ft") |
+| Our work | Each real photo is first a gold outline of the house, drawn on scroll, then the photo fades in inside it |
+| How we build | BuildStory as it is (the section the user loves) |
+| See it in 3D | A drafting frame draws round each render, labelled as a design render |
+| Prices | Three floors stack up one by one on scroll; each floor is a package with its price and lakh estimate |
+| Projects | A line map of Hyderabad draws itself; pins for Kondapur, Raghavendra Colony, Ganapatiguda and open plots open the project cards |
+| Find us on Google | Its own small band in the same style |
+| Book a visit | A gold route line runs to the KNS office pin while the visitor steps through the Stepper |
+| Footer | Ink, with the logo, contacts and address |
+
+### Tools, each with a visible job
+
+- **GSAP (DrawSVG, ScrollTrigger):** every drawing.
+- **Lenis:** weighted smooth scroll on laptops.
+- **Framer Motion:** taps, buttons and the photo fade-ins.
+- **React Bits:** the Stepper, plus any component that adds a visible effect.
+
+### Unchanged
+
+The pages, the problem pages (restyled to ink and gold), the phone bottom bar, piece 1's 3D removal and the tests, the build order and the testing rules.

@@ -174,3 +174,18 @@ One script, `tests/smoke.mjs`, run as `NODE_PATH=$(npm root -g) node tests/smoke
 - **Tests:**
   - `error-pages`: each `/errors/<code>.html` for 400, 401, 403, 404, 408, 429, 500, 502, 503, 504 and offline loads with JS disabled, shows its spec message, and has a Home link plus `tel:` and `wa.me` links.
   - `404-route`: `/kns/nope/` shows "This wall is missing a brick".
+
+---
+
+## Revision 2: "The drawing comes alive" (spec Revision 2 wins over the tasks above)
+
+### Task 1b: Recolour to ink and gold, intro every time (replaces the Brick & lime colours from Task 1)
+- **Files:** `tailwind.config.js`, `app/globals.css`, `app/layout.tsx` (`themeColor` `#0b0e19`; remove the `intro-seen` script line), `components/site/Intro.tsx`, `components/site/Site.tsx` (header), `components/site/BottomBar.tsx`, `components/Resilience.tsx`.
+- **Interfaces produced:** Tailwind colours `ink` (DEFAULT `#0b0e19`, raised `#141a2b`), `line` `#c9ad6c`, `cream` `#f3ede2`; CSS variables `--c-ink`, `--c-line`, `--c-cream`. Remove the `lime`, `brick`, `terracotta`, `charcoal` and `soot` tokens and `public/brand/kns-logo-dark.png`. The header uses the original `kns-logo.png`.
+- **Intro:** remove the sessionStorage read and write and the `.intro-seen` CSS. The curtain is `bg-ink`, crane and bricks `var(--c-line)`, KNS lettering `var(--c-cream)`.
+- **Tests:**
+  - Replace `intro-hidden-on-reload` with `intro-every-load`: after a reload, `.intro` is displayed within 300 ms, and Skip removes it within 3 s.
+  - The shared checks open pages through Skip as before.
+- **Done when:** the smoke tests pass, sloplint reports 0 FAIL, and it's published.
+
+Tasks 2 to 9 keep their order and tests. Their visual treatment follows the spec's Revision 2 table, not the Brick & lime colours named in them.
