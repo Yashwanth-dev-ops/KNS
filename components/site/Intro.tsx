@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 
 // The build runs in CSS (globals.css, "Logo intro") so it starts on the first painted frame, before any JS loads.
 // JS only waits for it to end, then flies the logo into the header. Times are seconds from first paint.
-const GOLD = 'var(--c-gold)', INK = 'var(--c-cream)';
+const GOLD = 'var(--c-gold)', INK = 'var(--c-ink)';
 const BRICKS: [number, number][] = [[14, 286], [46, 286], [78, 286], [30, 270], [62, 270], [14, 254], [46, 254], [78, 254], [30, 238], [62, 238], [46, 222], [78, 222], [62, 206]];
 const at = (t: number) => ({ ['--t' as string]: `${t.toFixed(2)}s` }) as React.CSSProperties;
 
@@ -28,7 +28,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
     if (reduce || !to || !from || !logo) { gsap.to(root.current, { opacity: 0, duration: 0.4, onComplete: finish }); return; }
     gsap.timeline({ onComplete: finish })
       .to(logo, { x: to.left + to.width / 2 - (from.left + from.width / 2), y: to.top + to.height / 2 - (from.top + from.height / 2), scale: to.width / from.width, duration: 1.1, ease: 'power3.inOut' })
-      .to(root.current, { backgroundColor: 'rgba(6,8,13,0)', duration: 0.6 }, '-=0.5')
+      .to(root.current, { backgroundColor: 'rgba(255,255,255,0)', duration: 0.6 }, '-=0.5')
       .to([logo, root.current.querySelector('.intro-skip')], { opacity: 0, duration: 0.25 });
   };
 
@@ -43,7 +43,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
 
   if (!show) return null;
   return (
-    <div ref={root} className="intro fixed inset-0 z-[100] place-items-center bg-night px-6">
+    <div ref={root} className="intro fixed inset-0 z-[100] place-items-center bg-white px-6">
       <svg viewBox="0 0 540 370" className="intro-logo w-[min(52vw,240px)]" role="img" aria-label="KNS Construction and Real Estate. Building dreams, brick by brick.">
         <g fill="none" stroke={GOLD} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
           <path pathLength={1} style={at(0.00)} className="crane" d="M126 300 V60 M146 300 V60" />
@@ -68,7 +68,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
         <path style={at(4.87)} className="rule" d="M12 304 H528" stroke={GOLD} strokeWidth="1.6" />
         <text style={at(5.27)} className="tagline" x="270" y="338" textAnchor="middle" fill={GOLD} fontFamily="var(--font-sans), system-ui, sans-serif" fontSize="20" letterSpacing="5">BUILDING DREAMS, BRICK BY BRICK</text>
       </svg>
-      <button type="button" onClick={leave} className="intro-skip absolute bottom-8 left-1/2 -translate-x-1/2 rounded px-3 py-2 text-sm text-cream/75 underline decoration-cream/25 underline-offset-4 hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-cream">Skip intro</button>
+      <button type="button" onClick={leave} className="intro-skip absolute bottom-8 left-1/2 -translate-x-1/2 rounded px-3 py-2 text-sm text-neutral-500 underline decoration-neutral-300 underline-offset-4 hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">Skip intro</button>
     </div>
   );
 }

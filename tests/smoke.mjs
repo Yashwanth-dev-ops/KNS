@@ -48,15 +48,21 @@ export const CHECKS = {
     await page.locator('.intro-skip').click();
     await page.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 3000 }).catch(() => { throw new Error('Skip did not remove the intro within 3 s'); });
   },
-  'night-story': async (page, vp) => {
+  'hero-sequence': async (page, vp) => {
     if (vp !== 'laptop') return;
     await skipIntro(page);
-    const at = async (f) => { await page.evaluate((f) => { const s = document.querySelector('.stages'); scrollTo(0, s.offsetTop + (s.offsetHeight - innerHeight) * f); }, f); await page.waitForTimeout(500);
-      return page.evaluate(() => ({ glow: +getComputedStyle(document.querySelector('#process')).getPropertyValue('--glow'), s5: getComputedStyle(document.querySelector('.s5')).strokeDashoffset })); };
-    const start = await at(0), end = await at(1);
-    if (start.glow !== 0 || start.s5 === '0px' || start.s5 === '0') throw new Error(`at start: glow ${start.glow}, s5 offset ${start.s5}`);
-    if (end.glow < 0.99 || !(end.s5 === '0px' || end.s5 === '0')) throw new Error(`at end: glow ${end.glow}, s5 offset ${end.s5}`);
-    await page.screenshot({ path: '/tmp/shots/night-end-laptop.png' });
+    const fill = () => page.evaluate(() => +getComputedStyle(document.querySelector('.logo-fill')).opacity);
+    if (await fill() > 0.05) throw new Error('logo already filled at the top');
+    await page.evaluate(() => scrollTo(0, innerHeight * 2.6)); await page.waitForTimeout(1800);
+    if (await fill() < 0.9) throw new Error(`logo not filled at the end of the hero (${await fill()})`);
+  },
+  'button-roll': async (page, vp) => {
+    if (vp !== 'laptop') return;
+    await skipIntro(page);
+    const pill = page.locator('.hero .pill');
+    await pill.hover(); await page.waitForTimeout(1000);
+    const t = await pill.evaluate((e) => getComputedStyle(e.querySelector('.roll > span')).transform);
+    if (t === 'none') throw new Error('label did not roll on hover');
   },
   'bottom-bar-no-overlap': async (page, vp) => {
     if (vp !== 'phone') return;
@@ -81,8 +87,8 @@ export const CHECKS = {
   fonts: async (page) => {
     await skipIntro(page);
     const [h, b] = await page.evaluate(() => [getComputedStyle(document.querySelector('h1')).fontFamily, getComputedStyle(document.body).fontFamily]);
-    if (!h.includes('Fraunces')) throw new Error(`h1 font: ${h}`);
-    if (!b.includes('Hanken Grotesk')) throw new Error(`body font: ${b}`);
+    if (!h.includes('Instrument Sans')) throw new Error(`h1 font: ${h}`);
+    if (!b.includes('Instrument Sans')) throw new Error(`body font: ${b}`);
   },
   'reduced-motion-content': async (page, vp, b) => {
     const p = await fresh(b, vp, { reducedMotion: 'reduce' });

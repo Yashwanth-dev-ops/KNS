@@ -15,7 +15,7 @@ export function Resilience() {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-50 flex flex-col items-center gap-2 p-3" aria-live="polite">
       {!online && (
-        <p className="pointer-events-auto rounded-lg bg-glow px-4 py-2 text-center text-sm font-semibold text-night shadow-lg">
+        <p className="pointer-events-auto rounded-lg bg-neutral-900 px-4 py-2 text-center text-sm font-semibold text-white shadow-lg">
           You are offline. What you have already opened still works; WhatsApp and calls need a connection.
         </p>
       )}

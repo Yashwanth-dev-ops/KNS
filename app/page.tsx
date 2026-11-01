@@ -1,10 +1,10 @@
-import Site from '../components/site/Site';
+import Home from '../components/home/Home';
 import { Resilience } from '../components/Resilience';
 
 export default function Page() {
   return (
     <>
-      <Site />
+      <Home />
       <Resilience />
     </>
   );
