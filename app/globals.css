@@ -1,9 +1,10 @@
-/* Hallmark · v2.0.0 · theme: custom, Brick & lime (by request) · genre: editorial · signature: a G+1 drawn in line as you scroll · fonts: Fraunces, Hanken Grotesk */
-/* critique: warm brick on lime-wash replaces the navy-and-gold default every Hyderabad builder uses; motion limited to five named moves */
+/* Hallmark · v2.0.0 · theme: custom, Night build (by request) · genre: editorial · signature: a G+1 drawn in cream line under a night sky; the windows light up at handover · fonts: Fraunces, Hanken Grotesk */
+/* critique: the colour comes from light, not paint; one warm accent (window glow) on near-black, everything else cream */
 /* waive 26b: :active is set through Tailwind active: utilities on buttons; there are no disabled controls on this site */
 :root {
   --font-display: 'Fraunces'; --font-sans: 'Hanken Grotesk';
-  --c-brick: #9c3d24; --c-terracotta: #c8693f; --c-lime: #f3ede2; --c-charcoal: #23201d; --c-gold: #a58747;
+  --c-night: #06080d; --c-cream: #f3ede2; --c-glow: #ffc46b; --c-glow-deep: #ffb54d; --c-glow-hot: #ff9a2e;
+  --c-star: #ffffff; --c-shade: rgba(0, 0, 0, .35); --c-spill: rgba(255, 170, 70, .42); --c-glow-shadow: rgba(255, 170, 60, .45);
 }
 @tailwind base;
 @tailwind components;
@@ -11,12 +12,18 @@
 
 @keyframes load { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
 
-html { background: var(--c-lime); color: var(--c-charcoal); color-scheme: light; -webkit-tap-highlight-color: transparent; }
+html { background: var(--c-night); color: var(--c-cream); color-scheme: dark; -webkit-tap-highlight-color: transparent; }
 html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 
 /* The logo intro only shows when JavaScript runs; without it the website is simply there. */
 .intro { display: none; }
 .js .intro { display: grid; }
-.intro-seen .intro { display: none; } /* already played this session: no flash before hydration */
 html { scroll-behavior: auto; }
+
+/* Night story */
+.night-drawing { color: var(--c-cream); filter: drop-shadow(0 2px 6px var(--c-shade)); }
+.night-drawing [class^="s"] { stroke-dasharray: 1; stroke-dashoffset: var(--o, 0); }
+.glow-windows rect { fill: var(--c-glow); opacity: var(--glow, 0); filter: drop-shadow(0 0 10px var(--c-glow-deep)) drop-shadow(0 0 32px var(--c-glow-hot)); }
+.night-stars { background-image: radial-gradient(1.2px 1.2px at 12% 18%, var(--c-star) 50%, transparent 51%), radial-gradient(1px 1px at 33% 9%, var(--c-star) 50%, transparent 51%), radial-gradient(1.4px 1.4px at 58% 22%, var(--c-star) 50%, transparent 51%), radial-gradient(1px 1px at 77% 12%, var(--c-star) 50%, transparent 51%), radial-gradient(1.2px 1.2px at 88% 30%, var(--c-star) 50%, transparent 51%), radial-gradient(1px 1px at 46% 34%, var(--c-star) 50%, transparent 51%), radial-gradient(1.3px 1.3px at 67% 6%, var(--c-star) 50%, transparent 51%); }
+.grain { opacity: .09; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }

@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   title: 'KNS Construction and Real Estate, Hyderabad: plots, turnkey homes, apartments',
   description: 'Turnkey G+1 houses in Hyderabad from ₹1,600 a sq ft, materials included. A ready-to-move Kondapur duplex, 3BHK apartments, villa plots and open plots.',
 };
-export const viewport: Viewport = { themeColor: '#161412', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#06080d', width: 'device-width', initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "var d=document.documentElement;d.classList.add('js');try{if(sessionStorage.getItem('kns-intro')==='1')d.classList.add('intro-seen')}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}

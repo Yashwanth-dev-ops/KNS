@@ -4,13 +4,12 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitText from '../bits/SplitText';
 import AccordionGallery from '../bits/AccordionGallery';
 import TiltedCard from '../bits/TiltedCard';
 import Stepper, { Step } from '../bits/Stepper';
 import { Intro } from './Intro';
 import { Smooth } from './Smooth';
-import BuildStory from './BuildStory';
+import NightStory from './NightStory';
 import { BottomBar } from './BottomBar';
 import { company, projects, wa } from '../../lib/content';
 
@@ -61,10 +60,9 @@ export default function Site() {
       <Intro onDone={() => setReady(true)} />
       <Header />
       <main id="main">
-        <Hero ready={ready} />
-        <BuildStory />
-        <Designs />
+        <NightStory />
         <InsideHome />
+        <Designs />
         <Packages />
         <Projects />
         <Visit />
@@ -90,54 +88,23 @@ function Header() {
   // Out of the way while reading down, back as soon as the visitor scrolls up.
   useMotionValueEvent(scrollY, 'change', (y) => setHidden(y > 200 && y > (scrollY.getPrevious() ?? 0)));
   return (
-    <motion.header animate={{ y: hidden ? '-100%' : '0%' }} transition={{ duration: 0.3 }} className="fixed inset-x-0 top-0 z-50 border-b border-charcoal/10 bg-lime/90 text-charcoal backdrop-blur">
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:rounded focus:bg-brick focus:px-3 focus:py-2 focus:text-lime">Skip to content</a>
+    <motion.header animate={{ y: hidden ? '-100%' : '0%' }} transition={{ duration: 0.3 }} className="fixed inset-x-0 top-0 z-50 border-b border-cream/10 bg-night/40 text-cream backdrop-blur-xl backdrop-saturate-150">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:rounded focus:bg-glow focus:px-3 focus:py-2 focus:text-night">Skip to content</a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
-        <a href="#main" aria-label={`${company.name}, home`} className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-brick"><img data-header-logo src="brand/kns-logo-dark.png" alt="" width={530} height={360} className="h-14 w-auto sm:h-16" /></a>
+        <a href="#main" aria-label={`${company.name}, home`} className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-cream"><img data-header-logo src="brand/kns-logo.png" alt="" width={530} height={360} className="h-14 w-auto sm:h-16" /></a>
         <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex gap-6 text-sm text-charcoal/80">
+          <ul className="flex gap-6 text-sm text-cream/80">
             {[['#process', 'How we build'], ['#designs', '3D designs'], ['#home', 'Our work'], ['#packages', 'Prices'], ['#projects', 'Projects'], ['#visit', 'Visit']].map(([h, t]) => (
-              <li key={h}><a href={h} className="rounded py-2 transition-colors duration-150 hover:text-brick focus-visible:outline focus-visible:outline-2 focus-visible:outline-brick">{t}</a></li>
+              <li key={h}><a href={h} className="rounded py-2 transition-colors duration-150 hover:text-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-cream">{t}</a></li>
             ))}
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <a href={`tel:${company.tel[0]}`} className={`${btn} hidden min-h-10 bg-charcoal/10 px-4 text-sm text-charcoal hover:bg-charcoal/15 focus-visible:outline-brick sm:inline-flex`}>Call</a>
-          <a href={wa('Hello KNS, I saw your website')} target="_blank" rel="noreferrer" className={`${btn} hidden min-h-10 bg-brick px-4 text-sm text-lime hover:bg-terracotta active:translate-y-px focus-visible:outline-brick sm:inline-flex`}>WhatsApp</a>
+          <a href={`tel:${company.tel[0]}`} className={`${btn} hidden min-h-10 rounded-full border border-cream/40 px-4 text-sm text-cream hover:bg-cream/10 focus-visible:outline-cream sm:inline-flex`}>Call</a>
+          <a href={wa('Hello KNS, I saw your website')} target="_blank" rel="noreferrer" className={`${btn} hidden min-h-10 rounded-full bg-glow px-4 text-sm text-night hover:bg-[var(--c-glow-deep)] active:scale-[0.97] focus-visible:outline-cream sm:inline-flex`}>WhatsApp</a>
         </div>
       </div>
     </motion.header>
-  );
-}
-
-function Hero({ ready }: { ready: boolean }) {
-  const title = 'Homes built brick by brick in Hyderabad';
-  return (
-    <section className="relative overflow-hidden bg-navy-900 pb-20 pt-32 text-stone-50 sm:pb-28 sm:pt-40">
-      <div aria-hidden="true" className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: JAALI }} />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          {/* The headline animates in once the intro has finished; before that it is in the page but invisible. */}
-          {ready
-            ? <SplitText tag="h1" text={title} splitType="words" effect="rise" trigger="load" className="font-display text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl" textAlign="left" />
-            : <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight opacity-0 sm:text-7xl">{title}</h1>}
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-50/80">Turnkey G+1 houses from ₹1,600 a square foot, materials included. Ready homes, apartments and plots in Kondapur.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#packages" className={`${btn} bg-gold-500 text-navy-950 hover:bg-gold-400 focus-visible:outline-gold-300`}>See prices</a>
-            <a href="#visit" className={`${btn} border border-white/30 hover:bg-white/10 focus-visible:outline-gold-300`}>Book a site visit</a>
-          </div>
-          <dl className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/15 pt-6 text-sm">
-            <div><dt className="text-stone-50/70">From</dt><dd className="mt-1 font-display text-2xl tabular-nums">₹1,600/sft</dd></div>
-            <div><dt className="text-stone-50/70">Includes</dt><dd className="mt-1 font-display text-2xl">Materials</dd></div>
-            <div><dt className="text-stone-50/70">Office</dt><dd className="mt-1 font-display text-2xl">Kondapur</dd></div>
-          </dl>
-        </div>
-        <figure className="mx-auto w-full max-w-md">
-          <TiltedCard imageSrc="photos/real/front-elevation.jpg" altText={HOME[0].alt} containerHeight="440px" containerWidth="100%" imageHeight="440px" imageWidth="100%" rotateAmplitude={8} scaleOnHover={1.03} showTooltip={false} radius={14} />
-          <figcaption className="mt-3 text-sm text-stone-50/70">A finished KNS G+1 house in Hyderabad.</figcaption>
-        </figure>
-      </div>
-    </section>
   );
 }
 

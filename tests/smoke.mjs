@@ -41,14 +41,22 @@ async function shared(page, vp) {
 }
 
 export const CHECKS = {
-  'intro-hidden-on-reload': async (page) => {
+  'intro-every-load': async (page) => {
     await skipIntro(page);
-    await page.reload({ waitUntil: 'commit' });
-    for (let i = 0; i < 20; i++) {
-      const shown = await page.evaluate(() => { const e = document.querySelector('.intro'); return !!e && getComputedStyle(e).display !== 'none'; }).catch(() => false);
-      if (shown) throw new Error('intro painted after reload');
-      await page.waitForTimeout(50);
-    }
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('.intro', { state: 'visible', timeout: 3000 }).catch(() => { throw new Error('intro did not play on reload'); });
+    await page.locator('.intro-skip').click();
+    await page.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 3000 }).catch(() => { throw new Error('Skip did not remove the intro within 3 s'); });
+  },
+  'night-story': async (page, vp) => {
+    if (vp !== 'laptop') return;
+    await skipIntro(page);
+    const at = async (f) => { await page.evaluate((f) => { const s = document.querySelector('.stages'); scrollTo(0, s.offsetTop + (s.offsetHeight - innerHeight) * f); }, f); await page.waitForTimeout(500);
+      return page.evaluate(() => ({ glow: +getComputedStyle(document.querySelector('#process')).getPropertyValue('--glow'), s5: getComputedStyle(document.querySelector('.s5')).strokeDashoffset })); };
+    const start = await at(0), end = await at(1);
+    if (start.glow !== 0 || start.s5 === '0px' || start.s5 === '0') throw new Error(`at start: glow ${start.glow}, s5 offset ${start.s5}`);
+    if (end.glow < 0.99 || !(end.s5 === '0px' || end.s5 === '0')) throw new Error(`at end: glow ${end.glow}, s5 offset ${end.s5}`);
+    await page.screenshot({ path: '/tmp/shots/night-end-laptop.png' });
   },
   'bottom-bar-no-overlap': async (page, vp) => {
     if (vp !== 'phone') return;
