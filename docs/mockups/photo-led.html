@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KNS: photo-led</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#0d0e10;--paper:#f6f3ee;--muted:#6d6a64;--gold:#c9a043;--line:rgba(13,14,16,.12)}
+html,body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif}
+a{color:inherit}
+.top{position:fixed;inset:0 0 auto;z-index:5;display:flex;align-items:center;gap:32px;padding:18px 48px;color:#fff;transition:background .3s,color .3s}
+.top.solid{background:rgba(246,243,238,.82);backdrop-filter:blur(16px) saturate(160%);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.logo{font-family:Fraunces,serif;font-size:26px;font-weight:600}
+.top nav{flex:1;display:flex;gap:26px;font-size:15px;opacity:.9}
+.pill{border:1.5px solid currentColor;border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px;text-decoration:none}
+.pill.fill{background:var(--gold);border-color:var(--gold);color:#16110a}
+/* hero: the render fills the screen, slow push-in */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;color:#fff}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.08);animation:push 14s ease-out forwards}
+@keyframes push{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0,transparent 30%,transparent 45%,rgba(0,0,0,.72) 100%)}
+.hero .copy{position:absolute;left:48px;right:48px;bottom:56px;z-index:1;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px;align-items:end}
+h1{font-family:Fraunces,serif;font-weight:600;font-size:clamp(52px,7vw,104px);line-height:.98;letter-spacing:-.025em;margin:0;overflow-wrap:break-word;min-width:0}
+.card{justify-self:end;max-width:360px;padding:24px 26px;border-radius:18px;background:rgba(255,255,255,.14);backdrop-filter:blur(18px) saturate(160%);border:1px solid rgba(255,255,255,.28)}
+.card p{margin:0;font-size:15px;opacity:.9}.card b{display:block;font-family:Fraunces,serif;font-size:44px;font-weight:600;margin:4px 0 14px}
+.card .row{display:flex;gap:10px;flex-wrap:wrap}
+.tag{position:absolute;top:96px;right:48px;z-index:1;font-size:13px;opacity:.85;background:rgba(0,0,0,.35);padding:6px 10px;border-radius:999px}
+/* sections */
+.wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+.sec{padding:120px 0}
+h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(40px,4.6vw,64px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px;overflow-wrap:break-word;min-width:0}
+.lede{font-size:19px;line-height:1.55;color:var(--muted);max-width:52ch;margin:0}
+/* interiors: big image, thumbnails choose the room */
+.rooms{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px;margin-top:48px}
+.rooms .big{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:1/1}
+.rooms .big img{width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.rooms .big span{position:absolute;left:20px;bottom:20px;color:#fff;font-weight:600;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);padding:8px 14px;border-radius:999px}
+.rooms ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.rooms button{all:unset;cursor:pointer;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;padding:10px;border-radius:16px;transition:background .2s}
+.rooms button:hover,.rooms button[aria-pressed=true]{background:#fff;box-shadow:0 1px 0 var(--line),0 12px 30px rgba(0,0,0,.06)}
+.rooms button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.rooms button img{width:120px;height:120px;object-fit:cover;border-radius:12px}
+.rooms b{font-family:Fraunces,serif;font-size:24px;font-weight:600;display:block}.rooms small{color:var(--muted);font-size:15px}
+.note{font-size:14px;color:var(--muted);margin-top:16px}
+/* real work strip */
+.dark{background:var(--ink);color:#f3efe7}
+.dark .lede{color:rgba(243,239,231,.7)}
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
+.strip figure{margin:0}.strip img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;display:block}
+.strip figcaption{margin-top:12px;font-size:15px;opacity:.75}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.hero img{animation:none;transform:none}.rv{opacity:1;transform:none;transition:none}}
+</style></head><body>
+<header class="top" id="top"><span class="logo">KNS</span><nav><span>Homes</span><span>Interiors</span><span>Prices</span><span>Projects</span></nav><a class="pill" href="#">Call</a><a class="pill fill" href="#">WhatsApp</a></header>
+<section class="hero">
+  <img src="img/exterior.jpg" alt="Design render of a KNS G+1 house with a slate frame and wood fins">
+  <span class="tag">Design render</span>
+  <div class="copy">
+    <h1>Your home,<br>built brick by brick.</h1>
+    <div class="card"><p>Turnkey G+1 houses in Hyderabad</p><b>₹1,600 / sq ft</b><p style="margin-bottom:16px">Materials included. Plan to keys, one contract.</p><div class="row"><a class="pill fill" href="#">Talk to KNS</a><a class="pill" href="#">See prices</a></div></div>
+  </div>
+</section>
+<section class="sec"><div class="wrap">
+  <div class="rv"><h2>Step inside before we build.</h2><p class="lede">Every KNS home is designed in 3D first, room by room, so you see exactly what you are getting.</p></div>
+  <div class="rooms rv">
+    <div class="big"><img id="big" src="img/living.jpg" alt="Design render of the living room"><span id="lab">Living room</span></div>
+    <ul>
+      <li><button aria-pressed="true" data-src="img/living.jpg" data-l="Living room"><img src="img/living.jpg" alt=""><span><b>Living room</b><small>Marble TV wall, cove ceiling</small></span></button></li>
+      <li><button aria-pressed="false" data-src="img/kitchen.jpg" data-l="Kitchen"><img src="img/kitchen.jpg" alt=""><span><b>Kitchen</b><small>L-shaped modular, black granite</small></span></button></li>
+      <li><button aria-pressed="false" data-src="img/bedroom.jpg" data-l="Bedroom"><img src="img/bedroom.jpg" alt=""><span><b>Bedroom</b><small>Padded headboard, full wardrobe</small></span></button></li>
+    </ul>
+  </div>
+  <p class="note">Design renders, not photos of finished homes.</p>
+</div></section>
+<section class="sec dark"><div class="wrap">
+  <div class="rv"><h2>And homes we have finished.</h2><p class="lede">Real KNS work in Hyderabad, photographed on site.</p></div>
+  <div class="strip rv">
+    <figure><img src="img/front-elevation.jpg" alt="Finished KNS G+1 with wood-grain cladding and jaali screens"><figcaption>Front elevation</figcaption></figure>
+    <figure><img src="img/entrance-porch.jpg" alt="Porch with marble-look tiles and a dark wood door"><figcaption>Entrance porch</figcaption></figure>
+    <figure><img src="img/living-false-ceiling.jpg" alt="Living room with a layered false ceiling and cove lights"><figcaption>Living room ceiling</figcaption></figure>
+  </div>
+</div></section>
+<script>
+const bar=document.getElementById('top');addEventListener('scroll',()=>bar.classList.toggle('solid',scrollY>innerHeight*.8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.15});document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+const big=document.getElementById('big'),lab=document.getElementById('lab');
+document.querySelectorAll('[data-src]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-src]').forEach(x=>x.setAttribute('aria-pressed',x===b));big.style.opacity=0;setTimeout(()=>{big.src=b.dataset.src;big.alt='Design render of the '+b.dataset.l.toLowerCase();lab.textContent=b.dataset.l;big.style.opacity=1},250)}));
+</script></body></html>
