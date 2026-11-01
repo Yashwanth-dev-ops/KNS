@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KNS: motion</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#0b0b0c;--paper:#f4f1ea;--muted:#8d8a83;--gold:#d8b25a}
+html,body{margin:0;overflow-x:clip;background:var(--ink);color:var(--paper);font-family:'Hanken Grotesk',system-ui,sans-serif}
+html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto}
+a{color:inherit;text-decoration:none}
+.bar{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:28px;padding:20px 40px;mix-blend-mode:difference;color:#fff}
+.bar b{font-family:Fraunces,serif;font-size:24px}.bar nav{flex:1;display:flex;gap:24px;font-size:14px}
+.pill{border:1.5px solid currentColor;border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px}
+/* 1 hero: the house seen through the letters, then the window opens to full screen */
+.hero{height:100vh;position:relative;overflow:hidden}
+.hero .word{position:absolute;inset:0;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:700;font-size:30vw;line-height:1;padding-top:4vh;letter-spacing:-.04em;
+  background:url(img/exterior.jpg) center 40%/cover;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .frame{position:absolute;inset:0;background:url(img/exterior.jpg) center 40%/cover;clip-path:inset(38% 36% 38% 36%);border-radius:0}
+.hero .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.7))}
+.hero .copy{position:absolute;left:40px;right:40px;bottom:48px;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:40px;opacity:0}
+.hero h1{font-family:Fraunces,serif;font-weight:600;font-size:clamp(48px,6.4vw,96px);line-height:.98;letter-spacing:-.025em;margin:0;max-width:11ch}
+.price{text-align:right}.price small{display:block;font-size:15px;opacity:.85}.price strong{font-family:Fraunces,serif;font-size:56px;font-weight:600}
+.cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:13px;opacity:.7;z-index:3}
+/* marquee */
+.mq{overflow:hidden;border-block:1px solid rgba(244,241,234,.15);padding:22px 0}
+.mq div{display:flex;gap:56px;white-space:nowrap;font-family:Fraunces,serif;font-size:56px;width:max-content}
+.mq span:nth-child(even){color:var(--gold);font-style:normal}
+/* 2 horizontal rooms */
+.rooms{height:100vh;overflow:hidden;position:relative}
+.rooms h2,.sec h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(40px,4.6vw,72px);line-height:1;letter-spacing:-.02em;margin:0}
+.rooms .head{flex:0 0 auto;width:34vw;align-self:center}
+.track{position:absolute;top:0;bottom:0;left:0;display:flex;align-items:center;gap:32px;padding:0 40px}
+.card{flex:0 0 auto;width:min(46vw,620px);height:70vh;border-radius:24px;overflow:hidden;position:relative}
+.card img{position:absolute;inset:-6% -12%;width:124%;height:112%;object-fit:cover}
+.card p{position:absolute;left:22px;bottom:18px;margin:0;font-weight:600;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);padding:8px 14px;border-radius:999px}
+.card em{position:absolute;right:22px;top:16px;font-style:normal;font-family:Fraunces,serif;font-size:64px;color:#fff;mix-blend-mode:overlay}
+.label{position:absolute;bottom:28px;left:40px;font-size:13px;opacity:.6}
+/* 3 drawing to photo */
+.draw{height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:40px;padding:0 40px;position:relative}
+.draw .stage{position:relative;aspect-ratio:600/520}
+.plan{position:absolute;inset:0;width:100%;height:100%;color:var(--paper)}
+.plan [class^=s]{stroke-dasharray:1;stroke-dashoffset:1}
+.draw .photo{position:absolute;inset:6% 12% 4% 16%;border-radius:18px;background:url(img/front-elevation.jpg) center/cover;clip-path:inset(100% 0 0 0 round 18px)}
+.steps{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px;font-size:18px}
+.steps li{opacity:.3;transition:opacity .3s}.steps li.on{opacity:1}
+/* 4 stacking price cards */
+.sec{padding:140px 40px}
+.stack{max-width:980px;margin:56px auto 0;display:grid;gap:0}
+.pc{position:sticky;top:110px;height:58vh;border-radius:28px;padding:44px;display:flex;flex-direction:column;justify-content:space-between;color:var(--ink);margin-bottom:6vh;box-shadow:0 -20px 60px rgba(0,0,0,.35)}
+.pc:nth-child(1){background:#e9e2d3}.pc:nth-child(2){background:var(--gold)}.pc:nth-child(3){background:#f4f1ea}
+.pc h3{font-family:Fraunces,serif;font-size:40px;font-weight:600;margin:0}.pc .big{font-family:Fraunces,serif;font-size:clamp(64px,9vw,128px);font-weight:600;line-height:.9;letter-spacing:-.03em}
+.pc p{margin:0;font-size:18px}
+/* 5 close */
+.close{height:90vh;display:grid;place-items:center;text-align:center;position:relative}
+.close h2{font-size:clamp(56px,9vw,150px)!important;line-height:.92}
+.mag{display:inline-grid;place-items:center;margin-top:40px;width:180px;height:180px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:700;font-size:18px}
+.mag:focus-visible,.pill:focus-visible{outline:2px solid var(--paper);outline-offset:4px}
+.note{font-size:13px;opacity:.6;margin-top:18px}
+@media (prefers-reduced-motion:reduce){.hero .frame{clip-path:none}.hero .copy{opacity:1}.plan [class^=s]{stroke-dashoffset:0}.draw .photo{clip-path:none}}
+</style></head><body>
+<header class="bar"><b>KNS</b><nav><span>Homes</span><span>Inside</span><span>Prices</span><span>Projects</span></nav><a class="pill" href="#">WhatsApp</a></header>
+
+<section class="hero">
+  <div class="word" aria-hidden="true">KNS</div>
+  <div class="frame" role="img" aria-label="Design render of a KNS G+1 house"></div>
+  <div class="copy"><h1>Your home, built brick by brick.</h1><div class="price"><small>Turnkey G+1, materials included</small><strong>₹1,600 / sq ft</strong></div></div>
+  <p class="cue">Scroll</p>
+</section>
+
+<div class="mq" aria-hidden="true"><div><span>Kondapur</span><span>Turnkey homes</span><span>Raghavendra Colony</span><span>Villa plots</span><span>Ganapatiguda</span><span>Open plots</span><span>Kondapur</span><span>Turnkey homes</span><span>Raghavendra Colony</span><span>Villa plots</span><span>Ganapatiguda</span><span>Open plots</span></div></div>
+
+<section class="rooms">
+  <div class="track">
+    <div class="head"><h2>Step inside<br>before we build.</h2></div>
+    <figure class="card"><img src="img/living.jpg" alt="Design render of a living room"><em>01</em><p>Living room</p></figure>
+    <figure class="card"><img src="img/kitchen.jpg" alt="Design render of a kitchen"><em>02</em><p>Kitchen</p></figure>
+    <figure class="card"><img src="img/bedroom.jpg" alt="Design render of a bedroom"><em>03</em><p>Bedroom</p></figure>
+    <figure class="card"><img src="img/living-false-ceiling.jpg" alt="A finished KNS living room ceiling"><em>04</em><p>Finished by KNS</p></figure>
+  </div>
+  <p class="label">Design renders and a finished KNS home</p>
+</section>
+
+<section class="draw">
+  <div><h2 style="font-family:Fraunces,serif;font-size:clamp(40px,4.6vw,72px);line-height:1;margin:0">From a line<br>to a real house.</h2>
+    <ol class="steps"><li>Plan and Vastu</li><li>Foundation</li><li>Structure</li><li>Walls and services</li><li>Finishing and handover</li></ol></div>
+  <div class="stage"><svg viewBox="0 0 600 520" fill="none" aria-hidden="true" class="plan"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" opacity="0.5">
+              <path pathLength="1" class="s1" d="M100 90 V505"/><path pathLength="1" class="s1" d="M200 90 V505"/><path pathLength="1" class="s1" d="M300 90 V505"/><path pathLength="1" class="s1" d="M400 90 V505"/><path pathLength="1" class="s1" d="M500 90 V505"/>
+              <path pathLength="1" class="s1" d="M40 180 H560"/><path pathLength="1" class="s1" d="M40 330 H560"/><path pathLength="1" class="s1" d="M40 470 H560"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+              <path pathLength="1" class="s1" d="M30 470 H570" />
+              <path pathLength="1" class="s1" d="M140 500 V510 M460 500 V510 M140 505 H460" />
+              <path pathLength="1" class="s2" d="M128 470 V500 H172 V470 M278 470 V500 H322 V470 M428 470 V500 H472 V470" />
+              <path pathLength="1" class="s2" d="M136 470 V455 H464 V470" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M150 455 V180 M300 455 V200 M450 455 V200" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M140 330 H460 M140 200 H460 M150 180 H250" />
+              <path pathLength="1" class="s4" d="M140 455 V200 M460 455 V200 M250 200 V120 H150 V180" />
+              <path pathLength="1" class="s4" d="M140 195 H460 V182 H250 M140 195 V182 H150" />
+              <path pathLength="1" class="s4" d="M315 360 H385 V420 H315 Z M350 360 V420 M175 350 H250 V455 M360 230 H400 V290 H360 Z" />
+              <path pathLength="1" class="s5" stroke-width="3" d="M120 212 H332 V318 H120 Z M132 222 H320 V308" />
+              <path pathLength="1" class="s5" d="M140 285 H320 M140 296 H320" />
+              <path pathLength="1" class="s5" d="M404 200 V455"/><path pathLength="1" class="s5" d="M414 200 V455"/><path pathLength="1" class="s5" d="M424 200 V455"/><path pathLength="1" class="s5" d="M434 200 V455"/><path pathLength="1" class="s5" d="M444 200 V455"/>
+              <path pathLength="1" class="s5" d="M200 155 V140 M200 140 q-14 -6 -10 -18 q10 2 10 18 q2 -16 12 -18 q4 12 -12 18" />
+              <path pathLength="1" class="s5" d="M60 470 V430 H150 M280 430 H540 V470 M150 430 V470 M280 430 V470 M160 440 H270 M160 452 H270 M160 464 H270" />
+              <circle pathLength="1" class="s5" cx="95" cy="415" r="14" /><circle pathLength="1" class="s5" cx="510" cy="412" r="16" />
+            </g>
+          </svg><div class="photo" role="img" aria-label="A finished KNS G+1 in Hyderabad"></div></div>
+</section>
+
+<section class="sec"><h2 style="text-align:center">Priced by the square foot.</h2>
+  <div class="stack">
+    <article class="pc"><h3>Standard</h3><div class="big">₹1,600</div><p>to ₹1,800 a sq ft. A 3,000 sq ft G+1 comes to about ₹48 to 54 lakh.</p></article>
+    <article class="pc"><h3>Premium</h3><div class="big">₹1,900</div><p>to ₹2,200 a sq ft. A 3,000 sq ft G+1 comes to about ₹57 to 66 lakh.</p></article>
+    <article class="pc"><h3>Commercial</h3><div class="big">₹2,200</div><p>to ₹2,500 a sq ft. A 3,000 sq ft build comes to about ₹66 to 75 lakh.</p></article>
+  </div>
+</section>
+
+<section class="close"><div><h2>Let&apos;s build<br>yours.</h2><a class="mag" href="#">Talk to KNS</a><p class="note">Prototype: design renders are labelled; prices are estimates.</p></div></section>
+
+<script src="gsap.min.js"></script><script src="ScrollTrigger.min.js"></script><script src="lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduce){
+  const lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+  // 1 hero: through the letters into the house
+  gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'+=150%',pin:true,scrub:1}})
+    .to('.hero .word',{scale:2.4,opacity:0,ease:'power2.in'},0)
+    .fromTo('.hero .frame',{clipPath:'inset(38% 36% 38% 36%)'},{clipPath:'inset(0% 0% 0% 0%)',ease:'power2.inOut'},0)
+    .to('.hero .copy',{opacity:1,y:0,duration:.35},.6).from('.hero .copy',{y:40,duration:.35},.6)
+    .to('.cue',{opacity:0,duration:.1},0);
+  // marquee
+  gsap.to('.mq div',{xPercent:-50,ease:'none',duration:28,repeat:-1});
+  // 2 rooms slide sideways while you scroll down; images drift inside their frames
+  const track=document.querySelector('.track');
+  const dist=()=>track.scrollWidth-innerWidth;
+  const h=gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.rooms',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+  gsap.utils.toArray('.card img').forEach(img=>gsap.fromTo(img,{xPercent:-6},{xPercent:6,ease:'none',scrollTrigger:{trigger:img.parentNode,containerAnimation:h,start:'left right',end:'right left',scrub:true}}));
+  // 3 the house draws itself, then the real photo rises inside it
+  const steps=gsap.utils.toArray('.steps li');
+  const d=gsap.timeline({scrollTrigger:{trigger:'.draw',start:'top top',end:'+=220%',pin:true,scrub:1,onUpdate:s=>{const k=Math.min(4,Math.floor(s.progress*5.5));steps.forEach((li,i)=>li.classList.toggle('on',i<=k))}}});
+  [1,2,3,4,5].forEach(i=>d.to('.plan .s'+i,{strokeDashoffset:0,duration:1,stagger:.03}));
+  d.to('.draw .photo',{clipPath:'inset(0% 0 0 0 round 18px)',duration:1.4,ease:'power2.out'}).to('.plan',{opacity:.15,duration:.6},'<');
+  // 5 magnetic button
+  const m=document.querySelector('.mag');
+  m.addEventListener('pointermove',e=>{const r=m.getBoundingClientRect();gsap.to(m,{x:(e.clientX-r.left-r.width/2)*.35,y:(e.clientY-r.top-r.height/2)*.35,duration:.4,ease:'power3.out'})});
+  m.addEventListener('pointerleave',()=>gsap.to(m,{x:0,y:0,duration:.6,ease:'elastic.out(1,.4)'}));
+}
+</script></body></html>
