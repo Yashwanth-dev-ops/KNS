@@ -3,7 +3,7 @@
 /* waive 26b: :active is set through Tailwind active: utilities on buttons; there are no disabled controls on this site */
 :root {
   --font-display: 'Fraunces'; --font-sans: 'Hanken Grotesk';
-  --c-night: #06080d; --c-cream: #f3ede2; --c-glow: #ffc46b; --c-glow-deep: #ffb54d; --c-glow-hot: #ff9a2e;
+  --c-night: #06080d; --c-gold: #c9a043; --c-cream: #f3ede2; --c-glow: #ffc46b; --c-glow-deep: #ffb54d; --c-glow-hot: #ff9a2e;
   --c-star: #ffffff; --c-shade: rgba(0, 0, 0, .35); --c-spill: rgba(255, 170, 70, .42); --c-glow-shadow: rgba(255, 170, 60, .45);
 }
 @tailwind base;
@@ -27,3 +27,19 @@ html { scroll-behavior: auto; }
 .glow-windows rect { fill: var(--c-glow); opacity: var(--glow, 0); filter: drop-shadow(0 0 10px var(--c-glow-deep)) drop-shadow(0 0 32px var(--c-glow-hot)); }
 .night-stars { background-image: radial-gradient(1.2px 1.2px at 12% 18%, var(--c-star) 50%, transparent 51%), radial-gradient(1px 1px at 33% 9%, var(--c-star) 50%, transparent 51%), radial-gradient(1.4px 1.4px at 58% 22%, var(--c-star) 50%, transparent 51%), radial-gradient(1px 1px at 77% 12%, var(--c-star) 50%, transparent 51%), radial-gradient(1.2px 1.2px at 88% 30%, var(--c-star) 50%, transparent 51%), radial-gradient(1px 1px at 46% 34%, var(--c-star) 50%, transparent 51%), radial-gradient(1.3px 1.3px at 67% 6%, var(--c-star) 50%, transparent 51%); }
 .grain { opacity: .09; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* Logo intro: the build runs from first paint (no wait for JS). --t is each part's start time. */
+.intro [style*="--t"] { animation-delay: var(--t); animation-fill-mode: both; transform-box: fill-box; }
+.intro .crane, .intro .hook { stroke-dasharray: 1; animation-name: i-draw; animation-duration: 1.45s; animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+.intro .brick { animation: i-drop .4s cubic-bezier(.22, 1, .36, 1) var(--t) both; }
+.intro .letter { animation: i-fall .93s cubic-bezier(.34, 1.56, .64, 1) var(--t) both; }
+.intro .word { animation: i-rise .8s cubic-bezier(.22, 1, .36, 1) var(--t) both; }
+.intro .rule { transform-origin: center; animation: i-grow .93s cubic-bezier(.22, 1, .36, 1) var(--t) both; }
+.intro .tagline { animation: i-fade 1.2s ease-out var(--t) both; }
+@keyframes i-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes i-drop { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+@keyframes i-fall { from { opacity: 0; transform: translateY(-80px); } to { opacity: 1; transform: none; } }
+@keyframes i-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes i-grow { from { transform: scaleX(0); } to { transform: none; } }
+@keyframes i-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .intro [style*="--t"] { animation: none !important; stroke-dashoffset: 0; } }
