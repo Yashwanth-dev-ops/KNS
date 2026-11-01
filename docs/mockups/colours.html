@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KNS colour options</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Hanken+Grotesk:wght@400;600&display=swap">
+<style>
+:root{--page:#efede8;--text:#1b1b1b}
+html,body{margin:0;overflow-x:clip;background:var(--page);color:var(--text);font-family:'Hanken Grotesk',system-ui,sans-serif}
+main{max-width:1240px;margin:0 auto;padding:40px 24px 80px}
+h1{font-family:Fraunces,serif;font-size:40px;margin:0 0 6px}
+.intro{margin:0 0 32px;max-width:60ch;line-height:1.5}
+.opt{margin:0 0 56px}
+.tag{font-weight:600;font-size:18px;margin:0 0 10px}
+.desc{margin:10px 0 0;max-width:70ch;line-height:1.5}
+.frame{background:var(--bg);color:var(--ink);border-radius:10px;overflow:hidden;
+  background-image:linear-gradient(color-mix(in srgb,var(--grid) 7%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--grid) 7%,transparent) 1px,transparent 1px);background-size:40px 40px}
+header{display:flex;align-items:center;gap:32px;padding:18px 40px;border-bottom:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}
+.logo{font-family:Fraunces,serif;font-size:26px;font-weight:600;letter-spacing:.02em}
+nav{flex:1;color:var(--dim);font-size:15px}
+.btn{background:var(--acc);color:var(--btnt);font-weight:600;padding:10px 18px;border-radius:6px;font-size:15px}
+.btn.big{display:inline-block;margin-top:22px;padding:14px 24px;font-size:17px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;padding:56px 40px 64px}
+h2{font-family:Fraunces,serif;font-weight:600;font-size:64px;line-height:1.02;margin:0;overflow-wrap:break-word;min-width:0}
+.lead{color:var(--dim);font-size:19px;margin:18px 0 0}
+.price{margin:22px 0 0;font-size:20px;color:var(--dim)} .price b{font-family:Fraunces,serif;font-size:44px;color:var(--acc);font-weight:600}
+.draw svg{width:100%;color:var(--line)}
+.draw [class^=s]{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 7s ease-in-out infinite}
+.draw .s1{animation-name:d1} .draw .s2{animation-name:d2} .draw .s3{animation-name:d3} .draw .s4{animation-name:d4} .draw .s5{animation-name:d5;stroke:var(--acc)}
+@keyframes d1{0%{stroke-dashoffset:1}12%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes d2{0%,12%{stroke-dashoffset:1}26%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes d3{0%,26%{stroke-dashoffset:1}42%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes d4{0%,42%{stroke-dashoffset:1}58%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@keyframes d5{0%,58%{stroke-dashoffset:1}76%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:1}}
+@media (prefers-reduced-motion:reduce){.draw [class^=s]{animation:none;stroke-dashoffset:0}}
+</style></head><body><main>
+<h1>KNS: pick the colours</h1>
+<p class="intro">The same animated house drawing, desktop layout, in three colour schemes. None of them is navy and gold. Tell me A, B or C, or which parts you like from each.</p>
+
+<section class="opt" style="--bg:#f4f0e6;--ink:#1d1c1a;--dim:#6b665d;--line:#1d1c1a;--acc:#c8402a;--btnt:#f4f0e6;--grid:#1d1c1a">
+  <p class="tag">Option A: Drafting paper</p>
+  <div class="frame">
+    <header><span class="logo">KNS</span><nav>How we build&nbsp;&nbsp;&nbsp;Our work&nbsp;&nbsp;&nbsp;Prices&nbsp;&nbsp;&nbsp;Projects</nav><span class="btn">WhatsApp</span></header>
+    <div class="hero">
+      <div><h2>Homes built brick by brick</h2><p class="lead">Turnkey G+1 houses in Hyderabad, materials included.</p>
+      <p class="price">from <b>₹1,600</b> a sq ft</p><span class="btn big">Talk to KNS</span></div>
+      <div class="draw"><svg viewBox="0 0 600 520" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"  opacity="0.5">
+              <path pathLength="1" class="s1" d="M100 90 V505"/><path pathLength="1" class="s1" d="M200 90 V505"/><path pathLength="1" class="s1" d="M300 90 V505"/><path pathLength="1" class="s1" d="M400 90 V505"/><path pathLength="1" class="s1" d="M500 90 V505"/>
+              <path pathLength="1" class="s1" d="M40 180 H560"/><path pathLength="1" class="s1" d="M40 330 H560"/><path pathLength="1" class="s1" d="M40 470 H560"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+              <path pathLength="1" class="s1" d="M30 470 H570" />
+              <path pathLength="1" class="s1" d="M140 500 V510 M460 500 V510 M140 505 H460" />
+              <path pathLength="1" class="s2" d="M128 470 V500 H172 V470 M278 470 V500 H322 V470 M428 470 V500 H472 V470" />
+              <path pathLength="1" class="s2" d="M136 470 V455 H464 V470" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M150 455 V180 M300 455 V200 M450 455 V200" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M140 330 H460 M140 200 H460 M150 180 H250" />
+              <path pathLength="1" class="s4" d="M140 455 V200 M460 455 V200 M250 200 V120 H150 V180" />
+              <path pathLength="1" class="s4" d="M140 195 H460 V182 H250 M140 195 V182 H150" />
+              <path pathLength="1" class="s4" d="M315 360 H385 V420 H315 Z M350 360 V420 M175 350 H250 V455 M360 230 H400 V290 H360 Z" />
+              <path pathLength="1" class="s5" stroke-width="3" d="M120 212 H332 V318 H120 Z M132 222 H320 V308" />
+              <path pathLength="1" class="s5" d="M140 285 H320 M140 296 H320" />
+              <path pathLength="1" class="s5" d="M404 200 V455"/><path pathLength="1" class="s5" d="M414 200 V455"/><path pathLength="1" class="s5" d="M424 200 V455"/><path pathLength="1" class="s5" d="M434 200 V455"/><path pathLength="1" class="s5" d="M444 200 V455"/>
+              <path pathLength="1" class="s5" d="M200 155 V140 M200 140 q-14 -6 -10 -18 q10 2 10 18 q2 -16 12 -18 q4 12 -12 18" />
+              <path pathLength="1" class="s5" d="M60 470 V430 H150 M280 430 H540 V470 M150 430 V470 M280 430 V470 M160 440 H270 M160 452 H270 M160 464 H270" />
+              <circle pathLength="1" class="s5" cx="95" cy="415" r="14" /><circle pathLength="1" class="s5" cx="510" cy="412" r="16" />
+            </g>
+          </svg></div>
+    </div>
+  </div>
+  <p class="desc">Off-white tracing paper, charcoal pencil lines, an architect's red pencil for the one accent. Calm, crafted, editorial.</p>
+</section>
+<section class="opt" style="--bg:#173a7a;--ink:#f5f7fb;--dim:#c5d1ea;--line:#f5f7fb;--acc:#ffd23f;--btnt:#14213d;--grid:#f5f7fb">
+  <p class="tag">Option B: Cyanotype</p>
+  <div class="frame">
+    <header><span class="logo">KNS</span><nav>How we build&nbsp;&nbsp;&nbsp;Our work&nbsp;&nbsp;&nbsp;Prices&nbsp;&nbsp;&nbsp;Projects</nav><span class="btn">WhatsApp</span></header>
+    <div class="hero">
+      <div><h2>Homes built brick by brick</h2><p class="lead">Turnkey G+1 houses in Hyderabad, materials included.</p>
+      <p class="price">from <b>₹1,600</b> a sq ft</p><span class="btn big">Talk to KNS</span></div>
+      <div class="draw"><svg viewBox="0 0 600 520" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"  opacity="0.5">
+              <path pathLength="1" class="s1" d="M100 90 V505"/><path pathLength="1" class="s1" d="M200 90 V505"/><path pathLength="1" class="s1" d="M300 90 V505"/><path pathLength="1" class="s1" d="M400 90 V505"/><path pathLength="1" class="s1" d="M500 90 V505"/>
+              <path pathLength="1" class="s1" d="M40 180 H560"/><path pathLength="1" class="s1" d="M40 330 H560"/><path pathLength="1" class="s1" d="M40 470 H560"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+              <path pathLength="1" class="s1" d="M30 470 H570" />
+              <path pathLength="1" class="s1" d="M140 500 V510 M460 500 V510 M140 505 H460" />
+              <path pathLength="1" class="s2" d="M128 470 V500 H172 V470 M278 470 V500 H322 V470 M428 470 V500 H472 V470" />
+              <path pathLength="1" class="s2" d="M136 470 V455 H464 V470" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M150 455 V180 M300 455 V200 M450 455 V200" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M140 330 H460 M140 200 H460 M150 180 H250" />
+              <path pathLength="1" class="s4" d="M140 455 V200 M460 455 V200 M250 200 V120 H150 V180" />
+              <path pathLength="1" class="s4" d="M140 195 H460 V182 H250 M140 195 V182 H150" />
+              <path pathLength="1" class="s4" d="M315 360 H385 V420 H315 Z M350 360 V420 M175 350 H250 V455 M360 230 H400 V290 H360 Z" />
+              <path pathLength="1" class="s5" stroke-width="3" d="M120 212 H332 V318 H120 Z M132 222 H320 V308" />
+              <path pathLength="1" class="s5" d="M140 285 H320 M140 296 H320" />
+              <path pathLength="1" class="s5" d="M404 200 V455"/><path pathLength="1" class="s5" d="M414 200 V455"/><path pathLength="1" class="s5" d="M424 200 V455"/><path pathLength="1" class="s5" d="M434 200 V455"/><path pathLength="1" class="s5" d="M444 200 V455"/>
+              <path pathLength="1" class="s5" d="M200 155 V140 M200 140 q-14 -6 -10 -18 q10 2 10 18 q2 -16 12 -18 q4 12 -12 18" />
+              <path pathLength="1" class="s5" d="M60 470 V430 H150 M280 430 H540 V470 M150 430 V470 M280 430 V470 M160 440 H270 M160 452 H270 M160 464 H270" />
+              <circle pathLength="1" class="s5" cx="95" cy="415" r="14" /><circle pathLength="1" class="s5" cx="510" cy="412" r="16" />
+            </g>
+          </svg></div>
+    </div>
+  </div>
+  <p class="desc">A real blueprint: deep blueprint blue, white lines, a yellow highlighter accent. Bold, technical, unmistakably "builder".</p>
+</section>
+<section class="opt" style="--bg:#dedad2;--ink:#141414;--dim:#55524c;--line:#141414;--acc:#e8920c;--btnt:#141414;--grid:#141414">
+  <p class="tag">Option C: Concrete and saffron</p>
+  <div class="frame">
+    <header><span class="logo">KNS</span><nav>How we build&nbsp;&nbsp;&nbsp;Our work&nbsp;&nbsp;&nbsp;Prices&nbsp;&nbsp;&nbsp;Projects</nav><span class="btn">WhatsApp</span></header>
+    <div class="hero">
+      <div><h2>Homes built brick by brick</h2><p class="lead">Turnkey G+1 houses in Hyderabad, materials included.</p>
+      <p class="price">from <b>₹1,600</b> a sq ft</p><span class="btn big">Talk to KNS</span></div>
+      <div class="draw"><svg viewBox="0 0 600 520" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"  opacity="0.5">
+              <path pathLength="1" class="s1" d="M100 90 V505"/><path pathLength="1" class="s1" d="M200 90 V505"/><path pathLength="1" class="s1" d="M300 90 V505"/><path pathLength="1" class="s1" d="M400 90 V505"/><path pathLength="1" class="s1" d="M500 90 V505"/>
+              <path pathLength="1" class="s1" d="M40 180 H560"/><path pathLength="1" class="s1" d="M40 330 H560"/><path pathLength="1" class="s1" d="M40 470 H560"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+              <path pathLength="1" class="s1" d="M30 470 H570" />
+              <path pathLength="1" class="s1" d="M140 500 V510 M460 500 V510 M140 505 H460" />
+              <path pathLength="1" class="s2" d="M128 470 V500 H172 V470 M278 470 V500 H322 V470 M428 470 V500 H472 V470" />
+              <path pathLength="1" class="s2" d="M136 470 V455 H464 V470" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M150 455 V180 M300 455 V200 M450 455 V200" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M140 330 H460 M140 200 H460 M150 180 H250" />
+              <path pathLength="1" class="s4" d="M140 455 V200 M460 455 V200 M250 200 V120 H150 V180" />
+              <path pathLength="1" class="s4" d="M140 195 H460 V182 H250 M140 195 V182 H150" />
+              <path pathLength="1" class="s4" d="M315 360 H385 V420 H315 Z M350 360 V420 M175 350 H250 V455 M360 230 H400 V290 H360 Z" />
+              <path pathLength="1" class="s5" stroke-width="3" d="M120 212 H332 V318 H120 Z M132 222 H320 V308" />
+              <path pathLength="1" class="s5" d="M140 285 H320 M140 296 H320" />
+              <path pathLength="1" class="s5" d="M404 200 V455"/><path pathLength="1" class="s5" d="M414 200 V455"/><path pathLength="1" class="s5" d="M424 200 V455"/><path pathLength="1" class="s5" d="M434 200 V455"/><path pathLength="1" class="s5" d="M444 200 V455"/>
+              <path pathLength="1" class="s5" d="M200 155 V140 M200 140 q-14 -6 -10 -18 q10 2 10 18 q2 -16 12 -18 q4 12 -12 18" />
+              <path pathLength="1" class="s5" d="M60 470 V430 H150 M280 430 H540 V470 M150 430 V470 M280 430 V470 M160 440 H270 M160 452 H270 M160 464 H270" />
+              <circle pathLength="1" class="s5" cx="95" cy="415" r="14" /><circle pathLength="1" class="s5" cx="510" cy="412" r="16" />
+            </g>
+          </svg></div>
+    </div>
+  </div>
+  <p class="desc">Raw light concrete, black lines, saffron as the accent. Modern architecture-magazine, confident and warm.</p>
+</section>
+</main></body></html>
