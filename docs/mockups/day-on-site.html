@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KNS: a day on site</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Hanken+Grotesk:wght@400;600&display=swap">
+<style>
+:root{--top:#2b3a67;--bot:#f7b39a;--sun:#ffd0a1;--sx:15%;--sy:85%;--fg:#fff5ec;--night:0;--glow:0;--line:#fff5ec}
+html{background:#040817}
+html,body{margin:0;overflow-x:clip;color:var(--fg);font-family:"Hanken Grotesk",system-ui,sans-serif}
+.sky{position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at var(--sx) var(--sy),var(--sun) 0,color-mix(in srgb,var(--sun) 35%,transparent) 18%,transparent 48%),linear-gradient(180deg,var(--top),var(--bot))}
+.stars{position:fixed;inset:0;z-index:-2;opacity:var(--night);background-image:radial-gradient(1.2px 1.2px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 33% 9%,#fff 50%,transparent 51%),radial-gradient(1.4px 1.4px at 58% 22%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 77% 12%,#fff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 88% 30%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 46% 34%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 22% 40%,#fff 50%,transparent 51%),radial-gradient(1.3px 1.3px at 67% 6%,#fff 50%,transparent 51%)}
+.grain{position:fixed;inset:0;z-index:-1;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none}
+.top{position:fixed;inset:0 0 auto;display:flex;align-items:center;gap:28px;padding:16px 48px;z-index:2;
+  background:color-mix(in srgb,var(--top) 35%,transparent);backdrop-filter:blur(18px) saturate(170%);border-bottom:1px solid color-mix(in srgb,var(--fg) 14%,transparent)}
+.logo{font-family:Fraunces,serif;font-size:26px;font-weight:600} .top nav{flex:1;opacity:.8;font-size:15px}
+.top a{color:inherit;text-decoration:none;font-weight:600;border:1.5px solid currentColor;padding:9px 16px;border-radius:999px;font-size:15px}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);max-width:1240px;margin:0 auto;padding:0 48px}
+.text{padding-top:12vh} .stage{min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.n{font-size:15px;opacity:.8;margin:0}
+h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(44px,5.4vw,76px);line-height:1.02;letter-spacing:-.02em;margin:.25em 0 0;overflow-wrap:break-word;min-width:0}
+.d{font-size:19px;line-height:1.55;opacity:.88;max-width:30ch;margin:22px 0 0}
+.cta{align-self:flex-start;margin-top:30px;background:linear-gradient(180deg,#ffd58c,#ffb54d);color:#1b1408;font-weight:600;padding:15px 26px;border-radius:999px;text-decoration:none;font-size:17px;box-shadow:0 8px 30px rgba(255,170,60,.45),inset 0 1px 0 rgba(255,255,255,.6)}
+.cta:active{transform:scale(.97)} .cta:focus-visible,.top a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.pin{position:sticky;top:0;height:100vh;display:grid;place-items:center}
+.pin svg{width:100%;max-width:620px;color:var(--line);overflow:visible;filter:drop-shadow(0 2px 6px color-mix(in srgb,var(--top) 35%,transparent))}
+.pin [class^=s]{stroke-dasharray:1;stroke-dashoffset:var(--o,1)}
+.glow rect{fill:#ffc46b;opacity:var(--glow);filter:drop-shadow(0 0 10px #ffb54d) drop-shadow(0 0 32px #ff9a2e)}
+.spill{position:fixed;right:18%;bottom:8%;width:46vw;height:30vh;z-index:-1;opacity:var(--glow);background:radial-gradient(ellipse at center,rgba(255,170,70,.35),transparent 65%);pointer-events:none}
+.hint{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;opacity:.75}
+</style></head><body>
+<div class="sky"></div><div class="stars"></div><div class="spill"></div><div class="grain"></div>
+<div class="top"><span class="logo">KNS</span><nav>How we build&nbsp;&nbsp;&nbsp;Our work&nbsp;&nbsp;&nbsp;Prices&nbsp;&nbsp;&nbsp;Projects</nav><a href="#">WhatsApp</a></div>
+<div class="wrap"><div class="text"><section class="stage"><p class="n">1 of 5 · The plot</p><h2>Every home starts with an empty plot.</h2><p class="d">Levelled, marked out and planned, Vastu included, before a single brick.</p></section><section class="stage"><p class="n">2 of 5 · Structure</p><h2>Then the frame: steel and concrete.</h2><p class="d">Footings, an RCC plinth, TMT columns and slabs, floor by floor.</p></section><section class="stage"><p class="n">3 of 5 · Walls</p><h2>Walls, brick by brick.</h2><p class="d">Red brick masonry, plaster, concealed wiring and plumbing.</p></section><section class="stage"><p class="n">4 of 5 · Finishing</p><h2>Plastered, painted, finished.</h2><p class="d">Elevation, tiles, granite, doors and paint, in the materials you chose.</p></section><section class="stage"><p class="n">5 of 5 · Handover</p><h2>And then, it is home.</h2><p class="d">Turnkey G+1 houses in Hyderabad from ₹1,600 a sq ft, materials included.</p><a class=cta href=#>Talk to KNS</a></section></div><div class="pin"><svg viewBox="0 0 600 520" role="img" aria-label="A G+1 house drawn stage by stage"><g class="glow"><rect x="316" y="361" width="68" height="58"/><rect x="361" y="231" width="38" height="58"/><rect x="176" y="351" width="73" height="103"/><rect x="133" y="223" width="186" height="60"/></g><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" opacity="0.5">
+              <path pathLength="1" class="s1" d="M100 90 V505"/><path pathLength="1" class="s1" d="M200 90 V505"/><path pathLength="1" class="s1" d="M300 90 V505"/><path pathLength="1" class="s1" d="M400 90 V505"/><path pathLength="1" class="s1" d="M500 90 V505"/>
+              <path pathLength="1" class="s1" d="M40 180 H560"/><path pathLength="1" class="s1" d="M40 330 H560"/><path pathLength="1" class="s1" d="M40 470 H560"/>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6">
+              <path pathLength="1" class="s1" d="M30 470 H570" />
+              <path pathLength="1" class="s1" d="M140 500 V510 M460 500 V510 M140 505 H460" />
+              <path pathLength="1" class="s2" d="M128 470 V500 H172 V470 M278 470 V500 H322 V470 M428 470 V500 H472 V470" />
+              <path pathLength="1" class="s2" d="M136 470 V455 H464 V470" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M150 455 V180 M300 455 V200 M450 455 V200" />
+              <path pathLength="1" class="s3" stroke-width="2.4" d="M140 330 H460 M140 200 H460 M150 180 H250" />
+              <path pathLength="1" class="s4" d="M140 455 V200 M460 455 V200 M250 200 V120 H150 V180" />
+              <path pathLength="1" class="s4" d="M140 195 H460 V182 H250 M140 195 V182 H150" />
+              <path pathLength="1" class="s4" d="M315 360 H385 V420 H315 Z M350 360 V420 M175 350 H250 V455 M360 230 H400 V290 H360 Z" />
+              <path pathLength="1" class="s5" stroke-width="3" d="M120 212 H332 V318 H120 Z M132 222 H320 V308" />
+              <path pathLength="1" class="s5" d="M140 285 H320 M140 296 H320" />
+              <path pathLength="1" class="s5" d="M404 200 V455"/><path pathLength="1" class="s5" d="M414 200 V455"/><path pathLength="1" class="s5" d="M424 200 V455"/><path pathLength="1" class="s5" d="M434 200 V455"/><path pathLength="1" class="s5" d="M444 200 V455"/>
+              <path pathLength="1" class="s5" d="M200 155 V140 M200 140 q-14 -6 -10 -18 q10 2 10 18 q2 -16 12 -18 q4 12 -12 18" />
+              <path pathLength="1" class="s5" d="M60 470 V430 H150 M280 430 H540 V470 M150 430 V470 M280 430 V470 M160 440 H270 M160 452 H270 M160 464 H270" />
+              <circle pathLength="1" class="s5" cx="95" cy="415" r="14" /><circle pathLength="1" class="s5" cx="510" cy="412" r="16" />
+            </g>
+          </svg></div></div>
+<p class="hint">Scroll to build the house</p>
+<script>
+// Each stage is a time of day: sky top, sky bottom, sun colour, sun x/y (%), text colour.
+const T=[
+ ['#2b3a67','#f7b39a','#ffd0a1',15,88,'#fff5ec'],   // sunrise
+ ['#5f9ad6','#d6ebf8','#fff4cf',24,22,'#0f2235'],   // morning
+ ['#8cc0ec','#f5f2ea','#ffffff',52,2,'#13202e'],    // noon
+ ['#cf5f3c','#f8c77a','#ffe0a0',84,78,'#2a1406'],   // golden hour
+ ['#040817','#1a2347','#3a2a4a',70,95,'#fbf1de'],   // night
+];
+const st=[...document.querySelectorAll('.stage')], R=document.documentElement;
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)), mix=(a,b,t)=>'rgb('+hex(a).map((v,i)=>Math.round(v+(hex(b)[i]-v)*t)).join(',')+')', lerp=(a,b,t)=>a+(b-a)*t;
+const groups=[1,2,3,4,5].map(i=>[...document.querySelectorAll('.s'+i)]);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function frame(){
+  const h=st[0].offsetHeight, top=st[0].getBoundingClientRect().top+scrollY;
+  const p=Math.max(0,Math.min(4,(scrollY+innerHeight*.5-top-h*.5)/h)), i=Math.floor(p), j=Math.min(4,i+1), t=reduce?Math.round(p-i):p-i;
+  const a=T[i], b=T[j];
+  R.style.setProperty('--top',mix(a[0],b[0],t)); R.style.setProperty('--bot',mix(a[1],b[1],t)); R.style.setProperty('--sun',mix(a[2],b[2],t));
+  R.style.setProperty('--sx',lerp(a[3],b[3],t)+'%'); R.style.setProperty('--sy',lerp(a[4],b[4],t)+'%');
+  R.style.setProperty('--fg',mix(a[5],b[5],t)); R.style.setProperty('--line',mix(a[5],b[5],t));
+  const g=Math.max(0,Math.min(1,(p-3.4)/.6)); R.style.setProperty('--glow',g); R.style.setProperty('--night',g);
+  groups.forEach((gr,k)=>{const o=Math.max(0,Math.min(1,1-(p+1-k)));gr.forEach(e=>e.style.setProperty('--o',reduce?(o<1?0:1):o))});
+}
+addEventListener('scroll',()=>requestAnimationFrame(frame),{passive:true}); frame();
+</script></body></html>
