@@ -44,7 +44,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
   if (!show) return null;
   return (
     <div ref={root} className="intro fixed inset-0 z-[100] place-items-center bg-night px-6">
-      <svg viewBox="0 0 540 370" className="intro-logo w-[min(64vw,340px)]" role="img" aria-label="KNS Construction and Real Estate. Building dreams, brick by brick.">
+      <svg viewBox="0 0 540 370" className="intro-logo w-[min(52vw,240px)]" role="img" aria-label="KNS Construction and Real Estate. Building dreams, brick by brick.">
         <g fill="none" stroke={GOLD} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
           <path pathLength={1} style={at(0.00)} className="crane" d="M126 300 V60 M146 300 V60" />
           <path pathLength={1} style={at(0.16)} className="crane" strokeWidth="2" d="M126 300 L146 276 L126 252 L146 228 L126 204 L146 180 L126 156 L146 132 L126 108 L146 84 L126 60" />
