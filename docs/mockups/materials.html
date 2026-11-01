@@ -21,6 +21,11 @@ h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(44px,5.4vw,76px);l
 .pin svg{width:100%;max-width:620px;color:var(--fg)}
 .pin [class^=s]{stroke-dasharray:1;stroke-dashoffset:var(--o,1)}
 .glow rect{fill:#ffc46b;opacity:var(--glow);filter:blur(.4px)}
+.sw{position:fixed;right:24px;bottom:20px;z-index:3;display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.sw button{font:600 14px "Hanken Grotesk",sans-serif;border:0;border-radius:999px;padding:9px 14px;background:transparent;color:#1d1b18;cursor:pointer}
+.sw button[aria-pressed=true]{background:#1d1b18;color:#fff}
+.sw button:active{transform:scale(.97)}
+.sw button:focus-visible{outline:2px solid #1d1b18;outline-offset:2px}
 .hint{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);font-size:14px;opacity:.7}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style></head><body>
@@ -47,8 +52,14 @@ h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(44px,5.4vw,76px);l
               <circle pathLength="1" class="s5" cx="95" cy="415" r="14" /><circle pathLength="1" class="s5" cx="510" cy="412" r="16" />
             </g>
           </svg></div></div>
-<p class="hint">Scroll to build the house</p>
+<p class="hint">Scroll to build the house</p><div class="sw" role="group" aria-label="Palette"><button data-pal="earth" aria-pressed="true">1 Earth</button><button data-pal="day" aria-pressed="false">2 A day on site</button><button data-pal="vivid" aria-pressed="false">3 Vivid</button></div>
 <script>
+const PAL={
+ earth:[['#8b4a2f','#f6eadf'],['#8f8d88','#17171a'],['#a2432a','#f6eadf'],['#efe8db','#1d1b18'],['#1b2232','#f6eadf']],
+ day:[['#f6c9b4','#2a1712'],['#cfe6f7','#0f2235'],['#fbf8f2','#1d1b18'],['#f2a23a','#2a1406'],['#0d1430','#fbf1de']],
+ vivid:[['#e2582b','#fff6ee'],['#2c2f35','#f3f4f6'],['#b72d1d','#fff1e8'],['#fffaf1','#1a1714'],['#2a1650','#fff1dc']],
+};
+let cur='earth';
 const st=[...document.querySelectorAll('.stage')], root=document.documentElement;
 const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)), mix=(a,b,t)=>'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';
 const groups=[1,2,3,4,5].map(i=>[...document.querySelectorAll('.s'+i)]);
@@ -57,10 +68,11 @@ function frame(){
   const y=scrollY+innerHeight*.5, h=st[0].offsetHeight, top=st[0].getBoundingClientRect().top+scrollY;
   const p=Math.max(0,Math.min(4,(y-top-h*.5)/h));               // 0..4 through the five stages
   const i=Math.floor(p), t=reduce?Math.round(p-i):p-i, j=Math.min(4,i+1);
-  root.style.setProperty('--bg',mix(hex(st[i].dataset.bg),hex(st[j].dataset.bg),t));
-  root.style.setProperty('--fg',mix(hex(st[i].dataset.fg),hex(st[j].dataset.fg),t));
+  root.style.setProperty('--bg',mix(hex(PAL[cur][i][0]),hex(PAL[cur][j][0]),t));
+  root.style.setProperty('--fg',mix(hex(PAL[cur][i][1]),hex(PAL[cur][j][1]),t));
   groups.forEach((g,k)=>{const o=Math.max(0,Math.min(1,1-(p+1-k)));g.forEach(e=>e.style.setProperty('--o',reduce?(o<1?0:1):o))});
   root.style.setProperty('--glow',Math.max(0,Math.min(1,(p-3.4)/.6)));
 }
+document.querySelectorAll('[data-pal]').forEach(b=>b.addEventListener('click',()=>{cur=b.dataset.pal;document.querySelectorAll('[data-pal]').forEach(x=>x.setAttribute('aria-pressed',x===b));frame();}));
 addEventListener('scroll',()=>requestAnimationFrame(frame),{passive:true}); frame();
 </script></body></html>
