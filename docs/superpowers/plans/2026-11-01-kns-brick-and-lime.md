@@ -30,6 +30,11 @@
 - **Budget:** the home page's first-load JS is 250 kB or less (shown in `next build` output).
 - **Paths:** keep relative asset paths (no leading `/`). The artifact host serves from a sub-path.
 - **Commits** end with the session attribution lines.
+- **Emil Kowalski skills:**
+  - `mobile-native` checklist in Task 1: tap highlight, `100svh`, safe areas, no input zoom.
+  - `animate` for every new motion: hero bricks, reveals, button press.
+  - `emil-design-eng` and `review-animations` as the polish pass at the end of each piece.
+  - `break-ui` on the project cards and prices in Tasks 6 and 7.
 
 ## Review focus
 
