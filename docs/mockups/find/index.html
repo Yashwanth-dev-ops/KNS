@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KNS Construction and Real Estate</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#111111;--grey:#b9b9b9;--soft:#6f6f6f;--paper:#ffffff;--wash:#f1f1f1;--dark:#151515;--gold:#b8892f;--sky1:#8fb8e3;--sky2:#c9def2;--sky3:#f6d9c6}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:clip;background:var(--paper);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif}
+html.lenis{height:auto}.lenis.lenis-smooth{scroll-behavior:auto}
+a{color:inherit;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 20px;font-weight:500;font-size:15px;background:var(--ink);color:#fff;transition:transform .15s}
+.pill.ghost{background:transparent;color:inherit;border:1px solid currentColor}.pill.light{background:#fff;color:var(--ink)}
+.pill:active{transform:scale(.97)}.pill:focus-visible,.nav a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.pill svg{width:16px;height:16px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.label{font-size:15px;font-weight:600;margin:0}
+.tone{font-weight:500;letter-spacing:-.01em}
+.tone .w{color:var(--grey)}
+/* intro: the KNS logo builds, small and centred */
+.intro{position:fixed;inset:0;z-index:50;background:#fff;display:grid;place-items:center}
+.intro svg{width:min(52vw,240px)}
+.intro .skip{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font:500 14px 'Instrument Sans';background:none;border:0;color:var(--soft);text-decoration:underline;cursor:pointer}
+.intro [style*="--t"]{animation-delay:var(--t);animation-fill-mode:both;transform-box:fill-box}
+.intro .crane{stroke-dasharray:1;animation:draw 1.4s cubic-bezier(.45,0,.55,1) var(--t) both}
+.intro .brick{animation:drop .4s cubic-bezier(.22,1,.36,1) var(--t) both}
+.intro .letter{animation:fall .9s cubic-bezier(.34,1.56,.64,1) var(--t) both}
+.intro .word,.intro .tag{animation:fade .8s ease-out var(--t) both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes drop{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes fall{from{opacity:0;transform:translateY(-70px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+/* header */
+.bar{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;gap:32px;padding:16px 40px;transition:background .3s,box-shadow .3s}
+.bar.solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.brand{font-weight:700;font-size:24px;letter-spacing:-.04em}
+.nav{flex:1;display:flex;justify-content:center;gap:28px;font-size:15px}
+/* hero */
+.hero{position:relative;height:100vh;overflow:hidden;background:linear-gradient(180deg,var(--sky1) 0%,var(--sky2) 55%,var(--sky3) 100%)}
+.hero .back{position:absolute;left:-10%;width:120%;bottom:8%;opacity:.85}
+.hero .house{position:absolute;left:50%;top:44vh;width:min(70vw,900px);margin-left:max(-35vw,-450px)}
+.hero .front{position:absolute;left:-10%;width:120%;bottom:-14%}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22vh;background:linear-gradient(180deg,transparent,#fff 85%);z-index:2;pointer-events:none}
+.hero .copy{position:absolute;top:17vh;left:0;right:0;text-align:center;z-index:3}
+.hero h1{font-weight:700;font-size:clamp(48px,7.3vw,108px);letter-spacing:-.02em;line-height:1;margin:0}
+.hero .sub{margin:16px 0 26px;font-size:clamp(17px,1.6vw,21px);font-weight:500;color:#2a2a2a}
+.hero .sub span{color:rgba(30,30,30,.55)}
+.logo-out{position:absolute;inset:0;display:grid;place-items:center;z-index:4;pointer-events:none;opacity:0}
+.logo-out .stack{text-align:center;line-height:.8}
+.logo-out .big,.logo-fill .big{font-weight:700;font-size:min(30vw,360px);letter-spacing:-.05em}
+.logo-out .big{color:transparent;-webkit-text-stroke:2px #fff}
+.logo-out .small,.logo-fill .small{display:block;font-weight:600;font-size:min(5vw,56px);letter-spacing:-.02em;margin-top:14px}
+.logo-out .small{color:transparent;-webkit-text-stroke:1.2px #fff}
+.logo-fill{position:absolute;inset:0;display:grid;place-items:center;z-index:4;pointer-events:none;opacity:0}
+.logo-fill .big,.logo-fill .small{background:url(img/exterior.jpg) center 35%/cover;background-attachment:fixed;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:0}
+/* why */
+.why{padding:140px 0 60px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px}
+.why p.tone{font-size:clamp(26px,2.6vw,38px);line-height:1.25;margin:0}
+.band{margin:70px auto 0;border-radius:6px;overflow:hidden;height:62vh;max-width:1160px}
+.band img{width:100%;height:120%;object-fit:cover;display:block}
+/* not just */
+.notjust{padding:150px 0 120px;text-align:center}
+.notjust h2{font-weight:500;font-size:clamp(34px,3.6vw,52px);letter-spacing:-.02em;margin:0}
+.notjust h2 span{color:var(--grey)}
+.steps-img{display:flex;justify-content:center;gap:0;margin:56px auto 0;height:300px}
+.steps-img figure{margin:0 -22px;width:260px;height:100%;background-size:cover;background-position:center;
+  clip-path:polygon(0 0,62% 0,62% 18%,82% 18%,82% 40%,100% 40%,100% 100%,0 100%)}
+.notjust p.tone{max-width:640px;margin:70px auto 0;font-size:22px;line-height:1.35}
+/* plan to keys */
+.keys{padding:80px 0 150px}
+.keys h2{font-weight:500;font-size:clamp(36px,3.8vw,56px);letter-spacing:-.02em;line-height:1.02;margin:0 0 26px}
+.keys h2 span{color:var(--grey)}
+.keys ol{list-style:none;padding:0;margin:0}
+.keys li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:26px 0;border-top:1px solid #e3e3e3;font-size:24px;font-weight:500;letter-spacing:-.01em}
+.keys li small{font-size:13px;color:var(--soft);padding-top:8px}
+.keys li span{color:var(--grey)}
+/* services */
+.svc{background:var(--dark);color:#fff;padding:110px 0 0}
+.svc .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;padding-bottom:60px}
+.svc h2{font-weight:500;font-size:clamp(36px,3.8vw,56px);letter-spacing:-.02em;line-height:1.02;margin:0}.svc h2 span{color:#6b6b6b}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;align-items:center;border-top:1px solid #2c2c2c;padding:34px 40px;max-width:1240px;margin:0 auto;position:relative;overflow:hidden}
+.row .d{display:grid;grid-template-columns:34px 1fr;gap:16px;font-size:15px;line-height:1.5;color:#cfcfcf;max-width:340px}
+.row .d i{font-style:normal;width:28px;height:28px;border:1px solid #6b6b6b;border-radius:50%;display:grid;place-items:center;font-size:12px}
+.row .word{font-size:clamp(80px,10vw,150px);font-weight:500;letter-spacing:-.04em;line-height:1;display:flex;justify-content:space-between;align-items:center}
+.row .word svg{width:80px;opacity:0;transform:translateX(-20px);transition:.35s}
+.row:hover .word svg{opacity:1;transform:none}
+.row .bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .5s;z-index:0}.row:hover .bg{opacity:.28}
+.row>*:not(.bg){position:relative;z-index:1}
+/* cards */
+.cards{background:var(--dark);color:#fff;padding:90px 0 120px}
+.cards .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:50px}
+.card{position:relative;height:380px;border-radius:4px;overflow:hidden;background-size:cover;background-position:center}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 45%,rgba(0,0,0,.35))}
+.card h3{position:absolute;top:22px;left:22px;margin:0;font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1.05;z-index:1}
+.card .pill{position:absolute;left:22px;bottom:22px;z-index:1}
+.note{font-size:13px;color:#8a8a8a;margin-top:16px}
+/* cta + footer */
+.cta{position:relative;height:72vh;display:grid;place-items:center;text-align:center;color:#fff;background:url(img/living.jpg) center/cover}
+.cta::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.cta>div{position:relative}.cta h2{font-size:clamp(40px,5vw,72px);font-weight:500;letter-spacing:-.02em;margin:0 0 28px}.cta h2 span{color:rgba(255,255,255,.55)}
+footer{background:var(--dark);color:#fff;padding:90px 0 30px}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:40px;font-size:15px;line-height:1.6}
+.fgrid h4{font-size:13px;color:#8a8a8a;font-weight:500;margin:0 0 8px}
+.fbig{font-weight:700;font-size:min(30vw,380px);letter-spacing:-.06em;line-height:.8;margin-top:80px}
+.legal{display:flex;justify-content:space-between;font-size:13px;color:#8a8a8a;margin-top:20px}
+.rv{opacity:0;transform:translateY(30px)}
+@media (prefers-reduced-motion:reduce){.intro{display:none}.rv{opacity:1;transform:none}.tone .w{color:inherit}.logo-fill{opacity:1}}
+</style></head><body>
+
+<div class="intro" id="intro">
+  <svg viewBox="0 0 540 370" role="img" aria-label="KNS Construction and Real Estate. Building dreams, brick by brick.">
+    <g fill="none" stroke="#b8892f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+      <path pathLength="1" style="--t:0s" class="crane" d="M126 300 V60 M146 300 V60"/>
+      <path pathLength="1" style="--t:.16s" class="crane" stroke-width="2" d="M126 300 L146 276 L126 252 L146 228 L126 204 L146 180 L126 156 L146 132 L126 108 L146 84 L126 60"/>
+      <path pathLength="1" style="--t:.32s" class="crane" stroke-width="4" d="M116 300 H156"/>
+      <path pathLength="1" style="--t:.48s" class="crane" stroke-width="2.2" d="M136 18 L126 60 M136 18 L146 60 M136 18 L64 62 M136 18 L330 62"/>
+      <path pathLength="1" style="--t:.64s" class="crane" d="M60 62 H332 M70 80 H332 M60 62 L70 80"/>
+      <path pathLength="1" style="--t:.8s" class="crane" stroke-width="1.8" d="M150 62 L162 80 L174 62 L186 80 L198 62 L210 80 L222 62 L234 80 L246 62 L258 80 L270 62 L282 80 L294 62 L306 80 L318 62 L330 80"/>
+      <path pathLength="1" style="--t:.96s" class="crane" stroke-width="2.4" d="M62 80 V96 H92 V80"/>
+    </g>
+    <g fill="#b8892f"><rect class="brick" style="--t:2.20s" x="14" y="286" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.29s" x="46" y="286" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.38s" x="78" y="286" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.47s" x="30" y="270" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.56s" x="62" y="270" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.65s" x="14" y="254" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.74s" x="46" y="254" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.83s" x="78" y="254" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:2.92s" x="30" y="238" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:3.01s" x="62" y="238" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:3.10s" x="46" y="222" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:3.19s" x="78" y="222" width="30" height="14" rx="1.5"/><rect class="brick" style="--t:3.28s" x="62" y="206" width="30" height="14" rx="1.5"/></g>
+    <g fill="#111" font-family="Instrument Sans, sans-serif" font-weight="700" font-size="104" letter-spacing="-4">
+      <text class="letter" style="--t:2.9s" x="166" y="196">K</text><text class="letter" style="--t:3.15s" x="242" y="196">N</text><text class="letter" style="--t:3.4s" x="324" y="196">S</text></g>
+    <g fill="#111" font-family="Instrument Sans, sans-serif" font-weight="600" font-size="31"><text class="word" style="--t:4.1s" x="170" y="242">CONSTRUCTION</text><text class="word" style="--t:4.3s" x="170" y="282">AND REAL ESTATE</text></g>
+    <text class="tag" style="--t:4.8s" x="270" y="336" text-anchor="middle" fill="#b8892f" font-family="Instrument Sans, sans-serif" font-size="18" letter-spacing="4">BUILDING DREAMS, BRICK BY BRICK</text>
+  </svg>
+  <button class="skip" type="button">Skip intro</button>
+</div>
+
+<header class="bar" id="bar"><span class="brand">KNS</span><nav class="nav" aria-label="Main"><a href="#why">Why KNS</a><a href="#services">Build and buy</a><a href="#projects">Projects</a><a href="#contact">Contact</a></nav><a class="pill" href="#contact">Talk to KNS</a></header>
+
+<section class="hero" aria-label="KNS Construction and Real Estate">
+  <img class="back" src="clouds-back.png" alt="">
+  <img class="house" src="house-cut.png" alt="Design render of a KNS G+1 house">
+  <img class="front" src="clouds-front.png" alt="">
+  <div class="copy"><h1>Homes Built Brick by Brick</h1>
+    <p class="sub">Turnkey G+1 houses in Hyderabad. <span>Real materials, one contract, plan to keys.</span></p>
+    <a class="pill" href="#contact">Plan your home <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+  <div class="logo-out" aria-hidden="true"><div class="stack"><div class="big">KNS</div><span class="small">Construction and Real Estate</span></div></div>
+  <div class="logo-fill" aria-hidden="true"><div class="stack"><div class="big">KNS</div><span class="small">Construction and Real Estate</span></div></div>
+</section>
+
+<section class="why" id="why"><div class="wrap grid2">
+  <p class="label">Why KNS</p>
+  <p class="tone reveal">Building a home is the biggest thing most families ever do. We make it simple: one team, one contract, from the first drawing to the day you get the keys.</p>
+</div>
+<div class="band"><img src="img/front-elevation.jpg" alt="A finished KNS G+1 house in Hyderabad"></div></section>
+
+<section class="notjust"><div class="wrap">
+  <h2 class="rv">This isn&apos;t just construction. <span>It&apos;s home.</span></h2>
+  <div class="steps-img" aria-hidden="true">
+    <figure style="background-image:url(img/entrance-porch.jpg)"></figure><figure style="background-image:url(img/living.jpg)"></figure><figure style="background-image:url(img/kitchen.jpg)"></figure><figure style="background-image:url(img/bedroom.jpg)"></figure>
+  </div>
+  <p class="tone reveal">It is the porch your children run across, the kitchen that fits your mother&apos;s recipes, the room you finally call your own. We build it like it is ours.</p>
+</div></section>
+
+<section class="keys"><div class="wrap grid2">
+  <div><h2 class="rv">Plan to keys, <span>simply.</span></h2><a class="pill" href="#contact">Book a site visit <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+  <ol>
+    <li class="rv"><small>01</small><div>Visit your plot. <span>We look at the land, the facing and your budget, then plan with Vastu in mind.</span></div></li>
+    <li class="rv"><small>02</small><div>See it in 3D. <span>Your elevation and rooms, designed and approved before a single brick.</span></div></li>
+    <li class="rv"><small>03</small><div>Move in. <span>Structure, walls, finishing, all with branded materials. You get the keys.</span></div></li>
+  </ol>
+</div></section>
+
+<section class="svc" id="services">
+  <div class="wrap head"><p class="label">What we do</p><h2 class="rv">How KNS <span>can help you</span></h2></div>
+  <a class="row" href="#contact"><div class="bg" style="background-image:url(img/exterior.jpg)"></div><div class="d"><i>1</i>Turnkey construction on your plot, from ₹1,600 a sq ft with materials included.</div><div class="word">Build<svg viewBox="0 0 80 40" fill="none" stroke="#fff" stroke-width="3"><path d="M0 20h76M58 2l18 18-18 18"/></svg></div></a>
+  <a class="row" href="#projects"><div class="bg" style="background-image:url(img/front-elevation.jpg)"></div><div class="d"><i>2</i>A ready-to-move, east-facing G+1 duplex in Kondapur and 3BHK flats in Raghavendra Colony.</div><div class="word">Buy<svg viewBox="0 0 80 40" fill="none" stroke="#fff" stroke-width="3"><path d="M0 20h76M58 2l18 18-18 18"/></svg></div></a>
+  <a class="row" href="#projects"><div class="bg" style="background-image:url(img/villa-layout.jpg)"></div><div class="d"><i>3</i>Villa plots in a planned Ganapatiguda community, and open plots across Hyderabad.</div><div class="word">Plots<svg viewBox="0 0 80 40" fill="none" stroke="#fff" stroke-width="3"><path d="M0 20h76M58 2l18 18-18 18"/></svg></div></a>
+</section>
+
+<section class="cards" id="projects"><div class="wrap">
+  <div class="grid2"><h2 class="rv" style="font-weight:500;font-size:clamp(36px,3.8vw,56px);letter-spacing:-.02em;line-height:1.02;margin:0">Projects <span style="color:#6b6b6b">in Hyderabad</span></h2><p class="tone" style="font-size:20px;margin:0;color:#cfcfcf">Ready homes, apartments and plots, each one built and sold by KNS directly.</p></div>
+  <div class="grid3">
+    <article class="card rv" style="background-image:url(img/front-elevation.jpg)"><h3>G+1 duplex,<br>Kondapur</h3><a class="pill light" href="#contact">Details</a></article>
+    <article class="card rv" style="background-image:url(img/exterior.jpg)"><h3>3BHK apartments,<br>Raghavendra Colony</h3><a class="pill light" href="#contact">Details</a></article>
+    <article class="card rv" style="background-image:url(img/villa-layout.jpg)"><h3>Villa plots,<br>Ganapatiguda</h3><a class="pill light" href="#contact">Details</a></article>
+  </div>
+  <p class="note">Interior and elevation images are design renders. The villa layout is a concept plan.</p>
+</div></section>
+
+<section class="cta" id="contact"><div><h2>Your plot. <span>Our bricks.</span></h2><a class="pill light" href="#">Talk to KNS on WhatsApp <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div></section>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><h4>Office</h4>Raghavendra Colony, Bajaj Showroom Line<br>Kondapur, Hyderabad 500084</div>
+    <div><h4>Call</h4>+91 91004 25645<br>+91 92465 63397</div>
+    <div><h4>Email</h4>knsconstructions@gmail.com<br><br><h4>Proprietor</h4>Kiran Gajbhare</div>
+  </div>
+  <div class="fbig" aria-hidden="true">KNS</div>
+  <div class="legal"><span>KNS Construction and Real Estate</span><span>Building dreams, brick by brick</span></div>
+</div></footer>
+
+<script src="gsap.min.js"></script><script src="ScrollTrigger.min.js"></script><script src="lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// split the two-tone paragraphs into words so they can darken as you read
+document.querySelectorAll('.reveal').forEach(p=>{p.innerHTML=p.textContent.split(' ').map(w=>'<span class="w">'+w+'</span>').join(' ')});
+const bar=document.getElementById('bar');
+addEventListener('scroll',()=>bar.classList.toggle('solid',scrollY>innerHeight*2.3),{passive:true});
+// intro
+const intro=document.getElementById('intro');
+const leave=()=>{if(!intro.isConnected)return;gsap.to(intro,{opacity:0,duration:.6,onComplete:()=>intro.remove()})};
+intro.querySelector('.skip').onclick=leave; setTimeout(leave,reduce?0:5900);
+if(!reduce){
+  const lenis=new Lenis({lerp:.09});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+  // hero: the house rises out of the clouds, the name is drawn over it, then filled with it
+  gsap.timeline({scrollTrigger:{trigger:'.hero',start:'top top',end:'+=260%',pin:true,scrub:1}})
+    .to('.hero .copy',{y:-80,opacity:0,duration:.25},0)
+    .fromTo('.hero .house',{y:0,scale:1},{y:()=>-innerHeight*.42,scale:1.12,duration:.55,ease:'power1.out'},0)
+    .to('.hero .front',{yPercent:-22,duration:.6},0).to('.hero .back',{yPercent:-12,duration:.6},0)
+    .to('.logo-out',{opacity:1,duration:.15},.3)
+    .to('.hero .house',{opacity:0,duration:.25},.6).to('.logo-out',{opacity:0,duration:.2},.62).to('.logo-fill',{opacity:1,duration:.25},.6)
+    .to('.hero .front',{yPercent:-34,duration:.4},.6).to({}, {duration:.2});
+  // words darken as they scroll past
+  document.querySelectorAll('.reveal').forEach(p=>gsap.to(p.querySelectorAll('.w'),{color:'#111',stagger:.06,ease:'none',scrollTrigger:{trigger:p,start:'top 80%',end:'bottom 45%',scrub:true}}));
+  gsap.utils.toArray('.rv').forEach(e=>gsap.to(e,{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 88%'}}));
+  gsap.fromTo('.band img',{yPercent:-10},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.band',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.from('.steps-img figure',{x:-120,opacity:0,stagger:.12,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'.steps-img',start:'top 80%'}});
+}else{document.querySelectorAll('.rv').forEach(e=>{e.style.opacity=1;e.style.transform='none'})}
+</script></body></html>
