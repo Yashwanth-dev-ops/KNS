@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 
 gsap.registerPlugin(DrawSVGPlugin);
-const GOLD = '#c9a043';
+const BRICK = 'var(--c-brick)', INK = 'var(--c-charcoal)', GOLD = 'var(--c-gold)';
 const BRICKS: [number, number][] = [[14, 286], [46, 286], [78, 286], [30, 270], [62, 270], [14, 254], [46, 254], [78, 254], [30, 238], [62, 238], [46, 222], [78, 222], [62, 206]];
 
 export function Intro({ onDone }: { onDone: () => void }) {
@@ -28,7 +28,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
     if (reduce || !to || !from || !logo) { gsap.to(root.current, { opacity: 0, duration: 0.4, onComplete: finish }); return; }
     gsap.timeline({ onComplete: finish })
       .to(logo, { x: to.left + to.width / 2 - (from.left + from.width / 2), y: to.top + to.height / 2 - (from.top + from.height / 2), scale: to.width / from.width, duration: 1.2, ease: 'power3.inOut' })
-      .to(root.current, { backgroundColor: 'rgba(11,14,25,0)', duration: 0.6 }, '-=0.5')
+      .to(root.current, { backgroundColor: 'rgba(243,237,226,0)', duration: 0.6 }, '-=0.5')
       .to([logo, root.current.querySelector('.intro-skip')], { opacity: 0, duration: 0.25 });
   };
 
@@ -56,9 +56,9 @@ export function Intro({ onDone }: { onDone: () => void }) {
 
   if (!show) return null;
   return (
-    <div ref={root} className="intro fixed inset-0 z-[100] place-items-center bg-navy-950 px-6">
+    <div ref={root} className="intro fixed inset-0 z-[100] place-items-center bg-lime px-6">
       <svg viewBox="0 0 540 370" className="intro-logo w-[min(86vw,560px)]" role="img" aria-label="KNS Construction and Real Estate. Building dreams, brick by brick.">
-        <g fill="none" stroke={GOLD} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+        <g fill="none" stroke={BRICK} strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
           <path className="crane" d="M126 300 V60 M146 300 V60" />
           <path className="crane" strokeWidth="2" d="M126 300 L146 276 L126 252 L146 228 L126 204 L146 180 L126 156 L146 132 L126 108 L146 84 L126 60" />
           <path className="crane" strokeWidth="4" d="M116 300 H156" />
@@ -68,20 +68,20 @@ export function Intro({ onDone }: { onDone: () => void }) {
           <path className="crane" strokeWidth="2.4" d="M62 80 V96 H92 V80" />
           <path className="hook" strokeWidth="1.6" d="M300 80 V106 q0 9 -6 9" />
         </g>
-        {BRICKS.map(([x, y], i) => <rect key={i} className="brick" x={x} y={y} width="30" height="14" rx="1.5" fill={GOLD} />)}
-        <g fill="#f3efe6" fontFamily="var(--font-display), Georgia, serif" fontWeight="600" fontSize="108">
+        {BRICKS.map(([x, y], i) => <rect key={i} className="brick" x={x} y={y} width="30" height="14" rx="1.5" fill={BRICK} />)}
+        <g fill={INK} fontFamily="var(--font-display), Georgia, serif" fontWeight="600" fontSize="108">
           <text className="letter" x="168" y="196">K</text>
           <text className="letter" x="248" y="196">N</text>
           <text className="letter" x="330" y="196">S</text>
         </g>
-        <g fill="#f3efe6" fontFamily="var(--font-display), Georgia, serif" fontWeight="500" fontSize="34">
+        <g fill={INK} fontFamily="var(--font-display), Georgia, serif" fontWeight="500" fontSize="34">
           <text className="word" x="170" y="242">CONSTRUCTION</text>
           <text className="word" x="170" y="282">AND REAL ESTATE</text>
         </g>
         <path className="rule" d="M12 304 H528" stroke={GOLD} strokeWidth="1.6" />
         <text className="tagline" x="270" y="338" textAnchor="middle" fill={GOLD} fontFamily="var(--font-sans), system-ui, sans-serif" fontSize="20" letterSpacing="5">BUILDING DREAMS, BRICK BY BRICK</text>
       </svg>
-      <button type="button" onClick={leave} className="intro-skip absolute bottom-8 left-1/2 -translate-x-1/2 rounded px-3 py-2 text-sm text-stone-50/75 underline decoration-white/25 underline-offset-4 hover:text-stone-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400">Skip intro</button>
+      <button type="button" onClick={leave} className="intro-skip absolute bottom-8 left-1/2 -translate-x-1/2 rounded px-3 py-2 text-sm text-charcoal/75 underline decoration-charcoal/25 underline-offset-4 hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-brick">Skip intro</button>
     </div>
   );
 }

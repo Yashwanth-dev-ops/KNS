@@ -11,6 +11,7 @@ import Stepper, { Step } from '../bits/Stepper';
 import { Intro } from './Intro';
 import { Smooth } from './Smooth';
 import BuildStory from './BuildStory';
+import { BottomBar } from './BottomBar';
 import { company, projects, wa } from '../../lib/content';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -55,7 +56,7 @@ const longDate = (d: Date) => d.toLocaleDateString('en-IN', { weekday: 'long', d
 export default function Site() {
   const [ready, setReady] = useState(false);
   return (
-    <>
+    <div className="pb-[calc(4.5rem+env(safe-area-inset-bottom))] sm:pb-0">
       <Smooth paused={!ready} />
       <Intro onDone={() => setReady(true)} />
       <Header />
@@ -69,7 +70,8 @@ export default function Site() {
         <Visit />
       </main>
       <Footer />
-    </>
+      <BottomBar />
+    </div>
   );
 }
 
@@ -88,20 +90,20 @@ function Header() {
   // Out of the way while reading down, back as soon as the visitor scrolls up.
   useMotionValueEvent(scrollY, 'change', (y) => setHidden(y > 200 && y > (scrollY.getPrevious() ?? 0)));
   return (
-    <motion.header animate={{ y: hidden ? '-100%' : '0%' }} transition={{ duration: 0.3 }} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-navy-950/85 backdrop-blur">
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:rounded focus:bg-gold-500 focus:px-3 focus:py-2 focus:text-navy-950">Skip to content</a>
+    <motion.header animate={{ y: hidden ? '-100%' : '0%' }} transition={{ duration: 0.3 }} className="fixed inset-x-0 top-0 z-50 border-b border-charcoal/10 bg-lime/90 text-charcoal backdrop-blur">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:rounded focus:bg-brick focus:px-3 focus:py-2 focus:text-lime">Skip to content</a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6">
-        <a href="#main" aria-label={`${company.name}, home`} className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400"><img data-header-logo src="brand/kns-logo.png" alt="" width={530} height={360} className="h-14 w-auto sm:h-16" /></a>
+        <a href="#main" aria-label={`${company.name}, home`} className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-brick"><img data-header-logo src="brand/kns-logo-dark.png" alt="" width={530} height={360} className="h-14 w-auto sm:h-16" /></a>
         <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex gap-6 text-sm text-stone-50/80">
+          <ul className="flex gap-6 text-sm text-charcoal/80">
             {[['#process', 'How we build'], ['#designs', '3D designs'], ['#home', 'Our work'], ['#packages', 'Prices'], ['#projects', 'Projects'], ['#visit', 'Visit']].map(([h, t]) => (
-              <li key={h}><a href={h} className="rounded py-2 transition-colors duration-150 hover:text-gold-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400">{t}</a></li>
+              <li key={h}><a href={h} className="rounded py-2 transition-colors duration-150 hover:text-brick focus-visible:outline focus-visible:outline-2 focus-visible:outline-brick">{t}</a></li>
             ))}
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <a href={`tel:${company.tel[0]}`} className={`${btn} hidden min-h-10 bg-white/10 px-4 text-sm text-stone-50 hover:bg-white/20 focus-visible:outline-gold-400 sm:inline-flex`}>Call</a>
-          <a href={wa('Hello KNS, I saw your website')} target="_blank" rel="noreferrer" className={`${btn} min-h-10 bg-gold-500 px-4 text-sm text-navy-950 hover:bg-gold-400 focus-visible:outline-gold-300`}>WhatsApp</a>
+          <a href={`tel:${company.tel[0]}`} className={`${btn} hidden min-h-10 bg-charcoal/10 px-4 text-sm text-charcoal hover:bg-charcoal/15 focus-visible:outline-brick sm:inline-flex`}>Call</a>
+          <a href={wa('Hello KNS, I saw your website')} target="_blank" rel="noreferrer" className={`${btn} hidden min-h-10 bg-brick px-4 text-sm text-lime hover:bg-terracotta active:translate-y-px focus-visible:outline-brick sm:inline-flex`}>WhatsApp</a>
         </div>
       </div>
     </motion.header>
@@ -319,7 +321,6 @@ function Footer() {
         <div className="leading-relaxed">
           {company.phones.map((p, i) => <a key={p} className="block hover:text-stone-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400" href={`tel:${company.tel[i]}`}>{p}</a>)}
           <a className="block hover:text-stone-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400" href={`mailto:${company.email}`}>{company.email}</a>
-          <a className="mt-3 inline-block text-sm text-stone-50/70 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold-400" href="world/">3D world preview</a>
         </div>
       </div>
       <p className="mx-auto mt-10 max-w-6xl border-t border-white/10 pt-6 text-sm text-stone-50/70">Prices are estimates and vary with design, location and specifications.</p>

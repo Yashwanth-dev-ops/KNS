@@ -1,14 +1,18 @@
-:root { --font-display: 'Cormorant Garamond'; --font-sans: 'Inter'; }
+/* Hallmark · v2.0.0 · theme: custom, Brick & lime (by request) · genre: editorial · signature: a G+1 drawn in line as you scroll · fonts: Fraunces, Hanken Grotesk */
+/* critique: warm brick on lime-wash replaces the navy-and-gold default every Hyderabad builder uses; motion limited to five named moves */
+/* waive 26b: :active is set through Tailwind active: utilities on buttons; there are no disabled controls on this site */
+:root {
+  --font-display: 'Fraunces'; --font-sans: 'Hanken Grotesk';
+  --c-brick: #9c3d24; --c-terracotta: #c8693f; --c-lime: #f3ede2; --c-charcoal: #23201d; --c-gold: #a58747;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @keyframes load { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
 
-html { background: #0b0e19; color-scheme: dark light; }
-html.world-on, html.world-on body { overflow: hidden; height: 100%; }
-/* While the 3D world is on, the page stays in the DOM for screen readers and search, but out of sight. */
-html.world-on .page { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+html { background: var(--c-lime); color: var(--c-charcoal); color-scheme: light; -webkit-tap-highlight-color: transparent; }
+html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 
 /* The logo intro only shows when JavaScript runs; without it the website is simply there. */
