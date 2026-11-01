@@ -1,0 +1,41 @@
+// Writes one branded, self-contained page per HTTP error (plus an offline page) into public/errors/.
+// No scripts, inline CSS, so each works even when the rest of the site cannot load.
+import fs from 'node:fs';
+
+const phone = '+91 91004 25645', tel = '+919100425645', wa = 'https://wa.me/919100425645?text=' + encodeURIComponent('Hello KNS, your website showed me an error page.');
+const pages = {
+  400: ['That link is broken', 'The address was not written in a way we understand. Check it, or start again from the home page.'],
+  401: ['Please sign in first', 'This part of the site needs a login. Most of KNS is open to everyone: start from the home page.'],
+  403: ['This page is private', 'You do not have permission to open it. Everything about KNS projects is on the home page.'],
+  404: ['We could not find that page', 'It may have moved, or the link has a typo. Our projects, prices and office are all on the home page.'],
+  408: ['That took too long', 'The connection was slow and the page timed out. Check your signal and try again.'],
+  429: ['Too many requests', 'Please wait a minute and try again. You can still reach KNS on WhatsApp or by phone.'],
+  500: ['Something went wrong on our side', 'The site hit a problem. Try again in a minute. KNS is still reachable on WhatsApp and by phone.'],
+  502: ['The site is not answering', 'A server between you and KNS failed. Try again in a minute.'],
+  503: ['Back in a few minutes', 'The site is being updated or is busy. Please try again shortly.'],
+  504: ['The server took too long', 'The site did not respond in time. Check your signal and try again.'],
+  offline: ['You are offline', 'Your phone has no internet connection. Pages you opened before still work; for the rest, reconnect and try again.'],
+};
+
+const page = (code, [title, text]) => `<!doctype html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${code === 'offline' ? 'Offline' : code} | KNS Construction and Real Estate</title><meta name="robots" content="noindex">
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0e19;color:#f7f5f0;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:24px}
+main{max-width:34rem;text-align:center}.brand{font:600 2.6rem/1 Georgia,serif;letter-spacing:.02em;color:#f7f5f0}.brand span{display:block;margin-top:6px;font:500 .8rem/1.2 system-ui,sans-serif;letter-spacing:.3em;color:#c9ad6c}
+.code{margin:40px 0 8px;font:600 1rem/1 system-ui,sans-serif;color:#c9ad6c}h1{margin:0;font:600 2.2rem/1.15 Georgia,serif}p{margin:16px auto 0;max-width:30rem;color:rgba(247,245,240,.8)}
+.row{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}a{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:6px;font-weight:600;text-decoration:none}
+a.gold{background:#a58747;color:#0b0e19}a.gold:hover{background:#c9ad6c}a.line{border:1px solid rgba(247,245,240,.35);color:#f7f5f0}a.line:hover{background:rgba(247,245,240,.1)}
+a:focus-visible{outline:2px solid #e3cf9a;outline-offset:3px}small{display:block;margin-top:40px;color:rgba(247,245,240,.6)}
+</style></head><body><main>
+<div class="brand" aria-label="KNS Construction and Real Estate">KNS<span>CONSTRUCTION AND REAL ESTATE</span></div>
+<p class="code">${code === 'offline' ? 'No connection' : 'Error ' + code}</p><h1>${title}</h1><p>${text}</p>
+<div class="row">${code === 'offline' ? '<a class="gold" href="/">Try again</a>' : '<a class="gold" href="/">Go to the home page</a>'}<a class="line" href="${wa}">WhatsApp KNS</a><a class="line" href="tel:${tel}">Call ${phone}</a></div>
+<small>KNS Construction and Real Estate, Raghavendra Colony, Kondapur, Hyderabad 500084</small>
+</main></body></html>
+`;
+
+fs.mkdirSync('public/errors', { recursive: true });
+for (const [code, copy] of Object.entries(pages)) fs.writeFileSync(`public/errors/${code}.html`, page(code, copy));
+fs.copyFileSync('public/errors/offline.html', 'public/offline.html');
+console.log(`error pages: ${Object.keys(pages).join(', ')}`);

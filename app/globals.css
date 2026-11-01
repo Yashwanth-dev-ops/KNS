@@ -1,0 +1,18 @@
+:root { --font-display: 'Cormorant Garamond'; --font-sans: 'Inter'; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes load { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+
+html { background: #0b0e19; color-scheme: dark light; }
+html.world-on, html.world-on body { overflow: hidden; height: 100%; }
+/* While the 3D world is on, the page stays in the DOM for screen readers and search, but out of sight. */
+html.world-on .page { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* The logo intro only shows when JavaScript runs; without it the website is simply there. */
+.intro { display: none; }
+.js .intro { display: grid; }
+.intro-seen .intro { display: none; } /* already played this session: no flash before hydration */
+html { scroll-behavior: auto; }

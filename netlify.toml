@@ -1,0 +1,12 @@
+# Netlify: build, publish folder, caching. Netlify serves out/404.html for missing pages automatically.
+[build]
+  command = "npm run build"
+  publish = "out"
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
